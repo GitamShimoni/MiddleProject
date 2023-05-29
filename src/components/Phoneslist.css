@@ -1,0 +1,15 @@
+#Phoneslist-container{
+    background-color: rgb(89, 108, 251);
+    display: flex;
+    justify-content: center;
+}
+#Phoneslist-inner{
+    background-color: white;
+    width: 60%;
+    margin: 10vw;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 40px;
+}

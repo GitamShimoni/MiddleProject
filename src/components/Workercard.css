@@ -1,0 +1,26 @@
+.workercard-container{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    align-items: center;
+}
+.workercard-fullname{
+  flex: 1;
+  text-align: center;
+}
+.workercard-phone{
+    flex: 1;
+    text-align: center;
+}
+.linktocall{
+    flex: 1;
+    text-align: center;
+}
+@media screen and (max-width:500px) {
+    .workercard-container{
+        justify-content: space-around;
+    }
+    .workercard-phone{
+        margin-left: 3vw;
+    }
+ }
