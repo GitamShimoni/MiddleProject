@@ -6,7 +6,6 @@ import Phoneslist from "./components/Phoneslist";
 import { Routes, Route } from "react-router-dom";
 import Availability from "./components/Availability";
 // import Calender from "./components/Calender";
-import Test from "./components/Test";
 import Workernavbar from "./components/Workernavbar";
 import Manager from "./components/Manager";
 

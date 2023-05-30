@@ -2,21 +2,21 @@
     "workers": [
       {
         "ID": 200000001,
-        "Username": "john.doe",
-        "Password": "password123",
+        "Username": "gitam",
+        "Password": "ofek",
         "Phone": "0531234567",
         "Admin": false,
         "Color": "blue",
-        "FullName": "John Doe"
+        "FullName": "Gitam Ofek"
       },
       {
         "ID": 300000002,
-        "Username": "jane.smith",
-        "Password": "secret321",
+        "Username": "ofek",
+        "Password": "gitam",
         "Phone": "0542345678",
         "Admin": true,
         "Color": "yellow",
-        "FullName": "Jane Smith"
+        "FullName": "Ofek Gitam"
       },
       {
         "ID": 200000003,

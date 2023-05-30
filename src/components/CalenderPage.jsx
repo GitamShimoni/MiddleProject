@@ -10,6 +10,7 @@ import {
 } from "@devexpress/dx-react-scheduler-material-ui";
 import { appointments } from "./appointments";
 import { useEffect, useState } from "react";
+import "./CalenderPage.css"
 
 const currentDate = getCurrentFormattedDate();
 
@@ -27,20 +28,19 @@ const Appointment = ({ children, style, ...restProps }) => (
 );
 const worker = {
   title: "Website Re-Design Plan",
-  startDate: new Date(2023, 4, 31, 12, 35),
-  endDate: new Date(2023, 4, 31, 15, 30),
-  id: 0,
-  location: "Room 1",
+  startDate: new Date(2023, 4, 30, 12),
+  endDate: new Date(2023, 4, 30, 15),
+  id: "29.05.2023morning",
 }
 localStorage.setItem("worker", JSON.stringify(worker));
-const Test = () => {
+const CalenderPage = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
     setData([JSON.parse(localStorage.getItem('worker'))]);
   }, [appointments]);
 
   return (
-    <div>
+    <div id="calender-page-div">
       <Paper>
         <Scheduler data={data}>
           <ViewState defaultCurrentDate={currentDate} />
@@ -56,7 +56,7 @@ const Test = () => {
   );
 };
 
-export default Test;
+export default CalenderPage;
 
 function getCurrentFormattedDate() {
   var currentDate = new Date();
