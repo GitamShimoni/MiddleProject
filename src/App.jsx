@@ -5,22 +5,23 @@ import Loginpage from "./components/Loginpage";
 import Phoneslist from "./components/Phoneslist";
 import { Routes, Route } from "react-router-dom";
 import Availability from "./components/Availability";
-import Template from "./components/Template";
 // import Calender from "./components/Calender";
 import Test from "./components/Test";
+import Workernavbar from "./components/Workernavbar";
+import Manager from "./components/Manager";
 
 function App() {
   return (
     <Routes>
-      <Route path="/login" element={<Loginpage />} />
-      <Route path="/" element={<Template />}>
+      <Route path="/" element={<Loginpage />} />
+      <Route path="Worker" element={<Workernavbar />}>
         <Route index element={<Shifts />} />
-        <Route path="/availble" element={<Availability />} />
-        <Route path="/phonelist" element={<Phoneslist />} />
-        <Route path="/calender" element={<Test />} />
+        <Route path ="Avaibility" element={<Availability />} />
+        <Route path="phonelist" element={<Phoneslist />} />
       </Route>
+      <Route path="Manager" element={<Manager/>}/>
     </Routes>
   );
-}
+} 
 
 export default App;

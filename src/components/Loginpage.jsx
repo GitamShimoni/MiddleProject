@@ -3,7 +3,9 @@ import { BiUserCircle } from "react-icons/bi";
 import {RiLockPasswordLine} from "react-icons/Ri";
 import {useForm} from 'react-hook-form';
 import data from './workers.json';
+import { useNavigate } from 'react-router-dom';
 function Loginpage() {
+    const navigate = useNavigate();
     let arrayofworkers = data.workers;
     console.log(arrayofworkers);
     const {register, handleSubmit}=useForm();
@@ -45,6 +47,19 @@ function Loginpage() {
     }
     console.log(check);
     console.log(admincheck);
+    if (check==true){
+        if(admincheck==true){
+          //lead to admin page
+          console.log("go to admin")
+          navigate('Manager');
+        }else{
+          //lead to worker page
+          console.log("go to worker")
+          navigate('Worker');
+        }
+    }else{
+      alert("username / password is incorrect")
+    }
     
   }
   }

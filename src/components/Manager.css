@@ -1,0 +1,28 @@
+#headline-manager-page{
+    background: linear-gradient(
+    50deg,
+    rgba(225, 234, 255, 1) 0%,
+    rgb(89, 108, 251) 100%
+  );
+    width: 100vw;
+    height: 13vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+}
+#logo-manager{
+    width: 80px;
+    height: auto;
+}
+#headline-tittle{
+    color: white;
+    font-size: 2.5vw;
+    margin-left: 20px;
+}
+@media screen and (max-width: 768px) {
+    #headline-tittle{
+        font-size: 35px;
+        margin-left: 10px;
+    }
+}
