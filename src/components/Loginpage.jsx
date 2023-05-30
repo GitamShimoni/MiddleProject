@@ -2,13 +2,16 @@ import './Loginpage.css';
 import { BiUserCircle } from "react-icons/bi";
 import {RiLockPasswordLine} from "react-icons/Ri";
 import {useForm} from 'react-hook-form';
+import data from './workers.json';
 function Loginpage() {
+    let arrayofworkers = data.workers;
+    console.log(arrayofworkers);
     const {register, handleSubmit}=useForm();
     return(
     <div id="login-container">
         <div id="login-inner">
           <h1 id='login-tittle'>Log in</h1>
-          <form onSubmit={handleSubmit((data)=>{console.log(data)})}>
+          <form onSubmit={handleSubmit((data)=>{checkUser(data)})}>
           <div> 
             <h3>Username:</h3>
             <div className="login-div">
@@ -28,6 +31,22 @@ function Loginpage() {
         </div>
     </div>
     )
+  function checkUser(objofinput){
+    console.log("im here")
+    console.log(objofinput.username);
+    console.log(objofinput.password);
+    let admincheck = null
+    let check=false;
+    for (let i=0; i<arrayofworkers.length;i++){
+       if (arrayofworkers[i].Username==objofinput.username&&arrayofworkers[i].Password==objofinput.password){
+        check=true;
+        admincheck = arrayofworkers[i].Admin;
+       }
+    }
+    console.log(check);
+    console.log(admincheck);
+    
+  }
   }
   
   export default Loginpage
