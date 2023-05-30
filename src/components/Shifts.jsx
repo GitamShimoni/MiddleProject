@@ -1,6 +1,4 @@
-function Shifts (){
-    return (
-        <div>Shifts page</div>
-    )
+function Shifts() {
+  return <div>Shifts pdhsajkdhasjdkashdkjashdjkage</div>;
 }
 export default Shifts;

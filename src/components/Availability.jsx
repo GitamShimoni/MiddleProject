@@ -17,7 +17,9 @@ const Availability = () => {
           </tr>
           <tr>
             <td>Morning</td>
-            <td>hi</td>
+            <td>
+              <input type="checkbox" />
+            </td>
             <td>hi</td>
             <td>hi</td>
             <td>hi</td>
