@@ -1,15 +1,25 @@
 import "./App.css";
-import Calender from "./components/Calender";
+
+import Shifts from "./components/Shifts";
+import Loginpage from "./components/Loginpage";
+import Phoneslist from "./components/Phoneslist";
+import { Routes, Route } from "react-router-dom";
+import Availability from "./components/Availability";
+import Template from "./components/Template";
+// import Calender from "./components/Calender";
 import Test from "./components/Test";
 
-// import Workernavbar from "./components/Workernavbar";
-// import Phoneslist from "./components/Phoneslist";
-import Loginpage from "./components/Loginpage";
 function App() {
   return (
-    // <Workernavbar></Workernavbar>
-    // <Phoneslist></Phoneslist>
-    <Loginpage />
+    <Routes>
+      <Route path="/login" element={<Loginpage />} />
+      <Route path="/" element={<Template />}>
+        <Route index element={<Shifts />} />
+        <Route path="/availble" element={<Availability />} />
+        <Route path="/phonelist" element={<Phoneslist />} />
+        <Route path="/calender" element={<Test />} />
+      </Route>
+    </Routes>
   );
 }
 
