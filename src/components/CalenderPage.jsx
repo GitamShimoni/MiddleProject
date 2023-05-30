@@ -11,7 +11,7 @@ import {
 import { appointments } from "./appointments";
 import { useEffect, useState } from "react";
 import "./CalenderPage.css"
-
+const loginname = localStorage.getItem("login")
 const currentDate = getCurrentFormattedDate();
 
 const Appointment = ({ children, style, ...restProps }) => (
@@ -27,16 +27,17 @@ const Appointment = ({ children, style, ...restProps }) => (
   </Appointments.Appointment>
 );
 const worker = {
+
   title: "Website Re-Design Plan",
-  startDate: new Date(2023, 4, 30, 12),
-  endDate: new Date(2023, 4, 30, 15),
+  startDate: new Date(2023, 4, 30, 12, 0),
+  endDate: new Date(2023, 4, 30, 15, 0),
   id: "29.05.2023morning",
 }
-localStorage.setItem("worker", JSON.stringify(worker));
+localStorage.setItem(`${loginname}Selected`, JSON.stringify(worker));
 const CalenderPage = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
-    setData([JSON.parse(localStorage.getItem('worker'))]);
+    setData([JSON.parse(localStorage.getItem(`${loginname}Selected`))]);
   }, [appointments]);
 
   return (
@@ -44,7 +45,7 @@ const CalenderPage = () => {
       <Paper>
         <Scheduler data={data}>
           <ViewState defaultCurrentDate={currentDate} />
-          <WeekView startDayHour={9} endDayHour={20} />
+          <WeekView startDayHour={9} endDayHour={22} />
           <h1 id="worker-shift-calender-header">Worker Shift Calender</h1>
           <Toolbar />
           <DateNavigator />
