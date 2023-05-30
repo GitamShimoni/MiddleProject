@@ -25,11 +25,18 @@ const Appointment = ({ children, style, ...restProps }) => (
     {children}
   </Appointments.Appointment>
 );
-
+const worker = {
+  title: "Website Re-Design Plan",
+  startDate: new Date(2023, 4, 31, 12, 35),
+  endDate: new Date(2023, 4, 31, 15, 30),
+  id: 0,
+  location: "Room 1",
+}
+localStorage.setItem("worker", JSON.stringify(worker));
 const Test = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
-    setData(appointments);
+    setData([JSON.parse(localStorage.getItem('worker'))]);
   }, [appointments]);
 
   return (
