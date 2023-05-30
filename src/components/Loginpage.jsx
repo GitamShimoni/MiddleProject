@@ -39,9 +39,11 @@ function Loginpage() {
     console.log(objofinput.password);
     let admincheck = null
     let check=false;
+    let namesaved = null;
     for (let i=0; i<arrayofworkers.length;i++){
        if (arrayofworkers[i].Username==objofinput.username&&arrayofworkers[i].Password==objofinput.password){
         check=true;
+        namesaved=arrayofworkers[i].FullName;
         admincheck = arrayofworkers[i].Admin;
        }
     }
@@ -52,10 +54,12 @@ function Loginpage() {
           //lead to admin page
           console.log("go to admin")
           navigate('Manager');
+          localStorage.setItem("login", namesaved)
         }else{
           //lead to worker page
           console.log("go to worker")
           navigate('Worker');
+          localStorage.setItem("login", namesaved)
         }
     }else{
       alert("username / password is incorrect")

@@ -7,7 +7,7 @@
         "Phone": "0531234567",
         "Admin": false,
         "Color": "blue",
-        "FullName": "Gitam Ofek"
+        "FullName": "GitamOfek"
       },
       {
         "ID": 300000002,
@@ -16,16 +16,16 @@
         "Phone": "0542345678",
         "Admin": true,
         "Color": "yellow",
-        "FullName": "Ofek Gitam"
+        "FullName": "OfekGitam"
       },
       {
         "ID": 200000003,
-        "Username": "michael.brown",
-        "Password": "qwerty789",
+        "Username": "or",
+        "Password": "yonatan",
         "Phone": "0533456789",
         "Admin": false,
         "Color": "red",
-        "FullName": "Michael Brown"
+        "FullName": "OrYonatan"
       },
       {
         "ID": 300000004,

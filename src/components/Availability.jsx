@@ -6,6 +6,7 @@ import Checkbox from "@mui/material/Checkbox"
 const Availability = () => {
   const [dates, setDates] = useState([]);
   const [dateCounter, setDateCounter] = useState(0);
+  const loginname = localStorage.getItem("login");
   //   const [workerShifts, setWorkerShifts] = useState([]);
 
   useEffect(() => {
@@ -45,17 +46,35 @@ const Availability = () => {
   }
   let selectedShifts = [];
   function handleInputClick(date, day, hour) {
+    let starthourindex = null;
+    let endhourindex = null;
+    if (hour==="morning"){
+        starthourindex=9;
+        endhourindex=13;
+    }
+    else if(hour==="lunch"){
+        starthourindex=14;
+        endhourindex=18;
+    }
+    else{
+        starthourindex=19;
+        endhourindex=22;
+    }
     const shift = {
-      date: date,
-      day: day,
-      hour: hour,
+      title: loginname,
+      startDate: new Date(date.slice(-4), date.slice(2,4), date.slice(0,2), starthourindex),
+      endDate: new Date(date.slice(-4), date.slice(2,4), date.slice(0,2), endhourindex),
       id: date + hour,
+      day:day
     };
+
     if (selectedShifts.some((element) => { return (element.id == shift.id);})) {
-      selectedShifts = [...selectedShifts].filter((element) => { return (element.id!= shift.id)}) 
+      selectedShifts = [...selectedShifts].filter((element) => { return (element.id!= shift.id)})
+      localStorage.setItem(`${loginname}Selected`, JSON.stringify(selectedShifts))
     } 
     else {
       selectedShifts.push(shift);
+      localStorage.setItem(`${loginname}Selected`, JSON.stringify(selectedShifts))
     }
 
     console.log(selectedShifts);
