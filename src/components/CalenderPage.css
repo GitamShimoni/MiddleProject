@@ -1,0 +1,7 @@
+#calender-page-div{
+    margin: auto;
+    margin-top: 3vw;
+    width: 60vw;
+    display: flex;
+    justify-content: center;
+}
