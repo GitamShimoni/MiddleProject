@@ -11,6 +11,7 @@ import {
 import { appointments } from "./appointments";
 import { useEffect, useState } from "react";
 import "./CalenderPage.css"
+import Divcardofshift from "./Divcardofshift";
 const loginname = localStorage.getItem("login")
 const currentDate = getCurrentFormattedDate();
 
@@ -34,14 +35,14 @@ const worker = [{
   startDate: new Date(2023, 4, 30, 11, 0),
   endDate: new Date(2023, 4, 30, 15, 0),
   id: "29.05.2023morning",
-  status: "declined",
+  status: "accept",
 }, { 
 
   title: "Gitam",
   startDate: new Date(2023, 4, 31, 13, 0),
   endDate: new Date(2023, 4, 31, 16, 0),
   id: "31.05.2023morning",
-  status: "declined",
+  status: "accept",
 },
 {
   title: "GitamOfek",
@@ -51,18 +52,26 @@ day: "tuesday",
 startDate: new Date(2023, 4, 29, 13, 0),
   endDate: new Date(2023, 4, 29, 16, 0),
 id: "30.05.2023morningGitamOfek",
-status: "selected"
+status: "accept"
 }
 ]
 
+
 localStorage.setItem(`${loginname}`, JSON.stringify(worker));
+
 const CalenderPage = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
-    setData(JSON.parse(localStorage.getItem(`${loginname}`)));
+    setData(worker) // this need to be change : set data is coming from local storage
   }, [appointments]);
 
+//can write from here
+
+let arrayofshiftsformanager = (JSON.parse(localStorage.getItem("allshifts")))
+console.log(arrayofshiftsformanager);
+
   return (
+    <>
     <div id="calender-page-div">
       <Paper>
         <Scheduler data={data}>
@@ -76,6 +85,11 @@ const CalenderPage = () => {
         </Scheduler>
       </Paper>
     </div>
+    <div id="container-all-ater-calender">
+    {arrayofshiftsformanager.map((element, index) => <Divcardofshift element={element} key={index} shiftsincalander={data} setshiftsincalander={setData} />)}
+    </div>
+    <br></br><br></br><br></br><br></br>
+    </>
   );
 };
 

@@ -5,3 +5,11 @@
     display: flex;
     justify-content: center;
 }
+#container-all-ater-calender{
+    margin: auto;
+    margin-top: 3vw;
+    width: 60vw;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
