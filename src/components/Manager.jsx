@@ -2,6 +2,9 @@ import './Manager.css';
 import CalenderPage from './CalenderPage';
 
 function Manager (){
+    // let keysoflocalstorage = Object.keys(localStorage); // this is array of keys in the local storage
+    // console.log (keysoflocalstorage);
+    // let arrayofshowingdata = 
     return (
         <>
         <div id="headline-manager-page">

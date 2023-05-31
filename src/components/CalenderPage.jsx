@@ -33,11 +33,11 @@ const worker = {
   endDate: new Date(2023, 4, 30, 15, 0),
   id: "29.05.2023morning",
 }
-localStorage.setItem(`${loginname}Selected`, JSON.stringify(worker));
+localStorage.setItem(`${loginname}`, JSON.stringify(worker));
 const CalenderPage = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
-    setData([JSON.parse(localStorage.getItem(`${loginname}Selected`))]);
+    setData([JSON.parse(localStorage.getItem(`${loginname}`))]);
   }, [appointments]);
 
   return (
