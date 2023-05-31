@@ -26,18 +26,40 @@ const Appointment = ({ children, style, ...restProps }) => (
     {children}
   </Appointments.Appointment>
 );
-const worker = {
+const shifts = (JSON.parse(localStorage.getItem("allshifts")))
+console.log(shifts);
+const worker = [{ 
 
-  title: "Website Re-Design Plan",
-  startDate: new Date(2023, 4, 30, 12, 0),
+  title: "Wedding",
+  startDate: new Date(2023, 4, 30, 11, 0),
   endDate: new Date(2023, 4, 30, 15, 0),
   id: "29.05.2023morning",
+  status: "declined",
+}, { 
+
+  title: "Gitam",
+  startDate: new Date(2023, 4, 31, 13, 0),
+  endDate: new Date(2023, 4, 31, 16, 0),
+  id: "31.05.2023morning",
+  status: "declined",
+},
+{
+  title: "GitamOfek",
+day: "tuesday",
+// startDate: "2023-01-30T07:00:00.000Z",
+// endDate: "2023-01-30T11:00:00.000Z",
+startDate: new Date(2023, 4, 29, 13, 0),
+  endDate: new Date(2023, 4, 29, 16, 0),
+id: "30.05.2023morningGitamOfek",
+status: "selected"
 }
-localStorage.setItem(`${loginname}Selected`, JSON.stringify(worker));
+]
+
+localStorage.setItem(`${loginname}`, JSON.stringify(worker));
 const CalenderPage = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
-    setData([JSON.parse(localStorage.getItem(`${loginname}Selected`))]);
+    setData(JSON.parse(localStorage.getItem(`${loginname}`)));
   }, [appointments]);
 
   return (
