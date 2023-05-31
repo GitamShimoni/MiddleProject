@@ -1,4 +1,7 @@
 function Shifts() {
-  return <div>Shifts pdhsajkdhasjdkashdkjashdjkage</div>;
+  return <div>
+    
+    Welcome to the shift page!
+  </div>;
 }
 export default Shifts;

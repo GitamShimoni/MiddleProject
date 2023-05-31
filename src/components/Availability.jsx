@@ -1,14 +1,15 @@
 import "./availability.css";
 import { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
-import Checkbox from "@mui/material/Checkbox";
+
 
 const Availability = () => {
   const [dates, setDates] = useState([]);
+  const [Formatteddates, setFormattedDates] = useState([]);
   const [dateCounter, setDateCounter] = useState(0);
   const loginname = localStorage.getItem("login");
   //   const [workerShifts, setWorkerShifts] = useState([]);
-  const [checkboxes, setCheckBoxes] = useState();
+  const [checkboxes, setCheckBoxes] = useState([]);
 
   useEffect(() => {
     let currentDate = new Date();
@@ -18,9 +19,9 @@ const Availability = () => {
     sundayDate.setDate(
       currentDate.getDate() - daysSinceSunday + 7 * dateCounter
     );
-
     function calculateWeekDates() {
       let weekDates = [];
+      let FormattedweekDates = [];
       for (let i = 0; i < 7; i++) {
         let date = new Date(sundayDate);
         date.setDate(sundayDate.getDate() + i);
@@ -30,14 +31,34 @@ const Availability = () => {
         let day = date.getDate().toString().padStart(2, "0");
 
         let formattedDate = day + "." + month + "." + year;
+        let NewformattedDate = new Date (year, month, day)
         weekDates.push(formattedDate);
+        FormattedweekDates.push(NewformattedDate)
       }
-
+      setFormattedDates(FormattedweekDates);
       setDates(weekDates);
     }
-
+    
     calculateWeekDates();
   }, [dateCounter]);
+
+  useEffect(() =>{
+    const arr = [];
+    if(dates[0]!=undefined){
+        for(let i=0; i<7; i++){
+            arr.push(isCheckSelected(dates[i],"morning"))
+        }
+        for(let i=0; i<7; i++){
+            arr.push(isCheckSelected(dates[i],"lunch"))
+        }
+        for (let i=0; i<7; i++){
+            arr.push(isCheckSelected(dates[i],"evening"))
+        }
+        
+    }
+    setCheckBoxes([...arr])
+}, [dates])
+
 
   function handleLeftClick() {
     setDateCounter((prev) => prev - 1);
@@ -83,27 +104,24 @@ const Availability = () => {
       ),
       id: date + hour + loginname,
       day: day,
+      hour: hour,
       status: "selected",
     };
 
-    // allshifts.push(shift)
-    // localStorage.setItem("allshifts", JSON.stringify(allshifts))
 
     if (
       allshifts.some((obj) => {
         return obj.id == shift.id
-        // && obj.title == shift.title;
+
       })
     ) {
       allshifts = [...allshifts].filter(
         (object) => object.id != shift.id
-        // object.title == shift.title && 
       );
       allshifts && localStorage.setItem("allshifts", JSON.stringify(allshifts));
     } else {
       allshifts.push(shift);
       localStorage.setItem("allshifts", JSON.stringify(allshifts));
-      console.log("koosoomo");
     }
   }
 
@@ -119,30 +137,29 @@ const Availability = () => {
     else return false;
   }
 
-  const [checkboxValues, setCheckboxValues] = useState({});
-
-  const handleCheckboxChange = (event) => {
-    const { name, checked } = event.target;
-    setCheckboxValues((prevState) => ({ ...prevState, [name]: checked }));
-  };
-
-  useEffect(() => {
-    // Retrieve saved checkbox values from local storage
-    const savedCheckboxValues = localStorage.getItem("checkboxValues");
-    if (savedCheckboxValues) {
-      setCheckboxValues(JSON.parse(savedCheckboxValues));
+  function isCheckSelected(date, hour) {
+    const checkedshifts = JSON.parse(localStorage.getItem("allshifts"));
+    const checkDate = date+hour+loginname;
+    if (checkedshifts.some((obj) => { return obj.id == checkDate})){
+        return true;
     }
-  }, []);
-
-  useEffect(() => {
-    // Save checkbox values to local storage whenever they change
-    localStorage.setItem("checkboxValues", JSON.stringify(checkboxValues));
-  }, [checkboxValues]);
-
-  function isCheckSelected(date, day, hour) {
-    let mySelected = localStorage.getItem(`${loginname}Selected`);
+    else{
+        return false;
+    }
   }
-
+  function disableCheckboxes(datesent){
+    console.log(datesent);
+    const date = new Date();
+    if (date>datesent){
+        console.log(true);
+        return true;
+    }
+    else{
+        console.log(false);
+        return false;
+    }
+  }
+  const todaysDate= new Date();
   return (
     <div id="availble-main-div">
       <div id="availble-buttons-div">
@@ -196,48 +213,42 @@ const Availability = () => {
           <tr>
             <td>Morning</td>
             <td>
-              <Checkbox
-                color="success"
+            
+              <input className={(Formatteddates[0]>todaysDate) ? "checkbox-disabled" : ""} type="checkbox" defaultChecked ={checkboxes[0]}
                 onClick={() => handleInputClick(dates[0], "sunday", "morning")}
               />
             </td>
             <td>
-              <Checkbox
-                color="success"
+              <input type="checkbox" defaultChecked ={checkboxes[1]}
                 onClick={() => handleInputClick(dates[1], "monday", "morning")}
               />
             </td>
             <td>
-              <Checkbox
-                color="success"
+              <input type="checkbox" defaultChecked ={checkboxes[2]}
                 onClick={() => handleInputClick(dates[2], "tuesday", "morning")}
               />
             </td>
             <td>
-              <Checkbox
-                color="success"
+              <input type="checkbox" defaultChecked ={checkboxes[3]}
                 onClick={() =>
                   handleInputClick(dates[3], "wednesday", "morning")
                 }
               />
             </td>
             <td>
-              <Checkbox
-                color="success"
+              <input type="checkbox" defaultChecked ={checkboxes[4]}
                 onClick={() =>
                   handleInputClick(dates[4], "thursday", "morning")
                 }
               />
             </td>
             <td>
-              <Checkbox
-                color="success"
+              <input type="checkbox" defaultChecked ={checkboxes[5]}
                 onClick={() => handleInputClick(dates[5], "friday", "morning")}
               />
             </td>
             <td>
-              <Checkbox
-                color="success"
+              <input className={(Formatteddates[6]>todaysDate) ? "checkbox-disabled" : ""}  type="checkbox" defaultChecked ={checkboxes[6]}
                 onClick={() =>
                   handleInputClick(dates[6], "saturday", "morning")
                 }
@@ -247,93 +258,72 @@ const Availability = () => {
           <tr>
             <td>Lunch</td>
             <td>
-              <Checkbox
-                color="success"
-                onClick={() => handleInputClick(dates[0], "sunday", "lunch")}
+              <input type="checkbox" defaultChecked ={checkboxes[7]}               onClick={() => handleInputClick(dates[0], "sunday", "lunch")}
               />
             </td>
             <td>
-              <Checkbox
-                color="success"
-                onClick={() => handleInputClick(dates[1], "monday", "lunch")}
+              <input type="checkbox" defaultChecked ={checkboxes[8]}               onClick={() => handleInputClick(dates[1], "monday", "lunch")}
               />
             </td>
             <td>
-              <Checkbox
-                color="success"
-                onClick={() => handleInputClick(dates[2], "tuesday", "lunch")}
+              <input type="checkbox" defaultChecked ={checkboxes[9]}               onClick={() => handleInputClick(dates[2], "tuesday", "lunch")}
               />
             </td>
             <td>
-              <Checkbox
-                color="success"
-                onClick={() => handleInputClick(dates[3], "wednesday", "lunch")}
+              <input type="checkbox" defaultChecked ={checkboxes[10]}               onClick={() => handleInputClick(dates[3], "wednesday", "lunch")}
               />
             </td>
             <td>
-              <Checkbox
-                color="success"
-                onClick={() => handleInputClick(dates[4], "thursday", "lunch")}
+              <input type="checkbox" defaultChecked ={checkboxes[11]}               onClick={() => handleInputClick(dates[4], "thursday", "lunch")}
               />
             </td>
             <td>
-              <Checkbox
-                color="success"
-                onClick={() => handleInputClick(dates[5], "friday", "lunch")}
+              <input type="checkbox" defaultChecked ={checkboxes[12]}               onClick={() => handleInputClick(dates[5], "friday", "lunch")}
               />
             </td>
             <td>
-              <Checkbox
-                color="success"
-                onClick={() => handleInputClick(dates[6], "saturday", "lunch")}
+              <input type="checkbox" defaultChecked ={checkboxes[13]}               onClick={() => handleInputClick(dates[6], "saturday", "lunch")}
               />
             </td>
           </tr>
           <tr>
             <td>Evening</td>
             <td>
-              <Checkbox
-                color="success"
+              <input type="checkbox" defaultChecked ={checkboxes[14]}
                 onClick={() => handleInputClick(dates[0], "sunday", "evening")}
               />
             </td>
             <td>
-              <Checkbox
-                color="success"
+              <input type="checkbox" defaultChecked ={checkboxes[15]}
                 onClick={() => handleInputClick(dates[1], "monday", "evening")}
               />
             </td>
             <td>
-              <Checkbox
-                color="success"
+              <input type="checkbox" defaultChecked ={checkboxes[16]}
                 onClick={() => handleInputClick(dates[2], "tuesday", "evening")}
               />
             </td>
             <td>
-              <Checkbox
-                color="success"
+              <input type="checkbox" defaultChecked ={checkboxes[17]}
                 onClick={() =>
                   handleInputClick(dates[3], "wednesday", "evening")
                 }
               />
             </td>
             <td>
-              <Checkbox
-                color="success"
+              <input type="checkbox" defaultChecked ={checkboxes[18]}
                 onClick={() =>
                   handleInputClick(dates[4], "thursday", "evening")
                 }
               />
             </td>
             <td>
-              <Checkbox
-                color="success"
+              <input type="checkbox" defaultChecked ={checkboxes[19]}
                 onClick={() => handleInputClick(dates[5], "friday", "evening")}
               />
             </td>
             <td>
-              <Checkbox
-                color="success"
+              <input type="checkbox" defaultChecked ={checkboxes[20]}
                 onClick={() =>
                   handleInputClick(dates[6], "saturday", "evening")
                 }
