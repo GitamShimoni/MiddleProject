@@ -25,3 +25,6 @@ td {
 .boldHighlightDate{
   background-color: rgb(255, 210, 210);
 }
+.checkbox-disabled{
+  pointer-events:none;
+}
