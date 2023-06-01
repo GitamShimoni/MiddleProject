@@ -68,7 +68,6 @@ const CalenderPage = () => {
 //can write from here
 
 let arrayofshiftsformanager = (JSON.parse(localStorage.getItem("allshifts")))
-console.log(arrayofshiftsformanager);
 
   return (
     <>

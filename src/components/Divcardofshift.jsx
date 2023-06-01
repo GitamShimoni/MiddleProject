@@ -2,10 +2,7 @@ import { render } from 'react-dom';
 import './Divcardofshift.css';
 function Divcardofshift({element, key, shiftsincalander, setshiftsincalander}) {
     let obj=element;
-    console.log(element);
     console.log(obj);
-    console.log(shiftsincalander);
-    console.log(setshiftsincalander);
     function formatDate(dateString) {
         const date = new Date(dateString);
         
@@ -19,6 +16,7 @@ function Divcardofshift({element, key, shiftsincalander, setshiftsincalander}) {
       const originalDateString = obj.startDate;
       const formattedDateString = formatDate(originalDateString);
       
+      
     //   console.log(formattedDateString);  // Output: 30.1.2023
     return(
         <div className="cardofshift-container">
@@ -31,17 +29,45 @@ function Divcardofshift({element, key, shiftsincalander, setshiftsincalander}) {
         </div>
     )
     function setDataInCalender(obj){
-        console.log(obj);
-        let newShiftinCalender = [{
-            title: "Wedding",
-            startDate: new Date(2023, 4, 28, 11, 0),
-            endDate: new Date(2023, 4, 28, 15, 0),
-            id: "29.05.2023morning",
-            status: "declined",
-        } ]
-        setshiftsincalander(newShiftinCalender);
-        console.log("setDataInCalender")
-        console.log(Date(2023, 4, 28, 11, 0));
+        const dateforset = new Date(obj.startDate);
+        console.log(dateforset);
+        const day1set = dateforset.getDate();
+        console.log(day1set);
+        const month1set = dateforset.getMonth();
+        console.log(month1set);
+        const year1set = dateforset.getFullYear();
+        console.log(year1set);
+
+        let starthour=null;
+        let endhour=null;
+        if(obj.hour=="morning"){
+            console.log("this is morning");
+            starthour=8;
+            endhour=12;
+            console.log(starthour, endhour);
+        }
+        if(obj.hour=="lunch"){
+            console.log("this is lunch");
+            starthour=13;
+            endhour=16;
+            console.log(starthour, endhour);
+        }
+        if(obj.hour=="evening"){
+            console.log("this is evening");
+            starthour=17;
+            endhour=20;
+            console.log(starthour, endhour);
+        }
+        
+        let newShiftinCalender ={
+            title: obj.title,
+            startDate: new Date(year1set, month1set, day1set, starthour, 0),
+            endDate: new Date(year1set, month1set, day1set, endhour, 0),
+            id: obj.id,
+            status: "approved",
+        }
+        setshiftsincalander([...shiftsincalander, newShiftinCalender]);
+        console.log(shiftsincalander);
     }
     function takeOutDataInCalender(obj){
         console.log("take shift out function");
