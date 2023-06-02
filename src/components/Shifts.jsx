@@ -29,8 +29,8 @@ function Shifts() {
     })
     console.log(filteredshiftThisWeek);
     filteredshiftThisWeek = filteredshiftThisWeek.sort(function(a, b) {
-      var dateA = new Date(a.endDate);
-      var dateB = new Date(b.endDate);
+      let dateA = new Date(a.endDate);
+      let dateB = new Date(b.endDate);
       return dateA - dateB;
     });
     // filteredshiftThisWeek = filteredshiftThisWeek.sort((a,b) => { a.endDate - b.endDate})
@@ -42,12 +42,12 @@ function Shifts() {
       return isEarlierDate(obj.startDate, saturdayDate)
     })
     NextWeekfilteredshifts = NextWeekfilteredshifts.sort(function(a, b) {
-      var dateA = new Date(a.endDate);
-      var dateB = new Date(b.endDate);
+      let dateA = new Date(a.endDate);
+      let dateB = new Date(b.endDate);
       return dateA - dateB;
     });
     setNextWeekFilteredShifts(NextWeekfilteredshifts)
-  }, [shifts])
+  }, [shifts, loginName])
 
   return(
     <>
