@@ -119,7 +119,7 @@ const Availability = () => {
       id: date + hour + loginname,
       day: day,
       hour: hour,
-      status: "accept",
+      status: "selected",
     };
 
 

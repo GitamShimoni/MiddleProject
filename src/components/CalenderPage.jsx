@@ -57,15 +57,19 @@ console.log(shifts);
 // ]
 
 let arrayofshifts = JSON.parse(localStorage.getItem("allshifts")) || []; //  this 2 lines
-const acceptedshift = arrayofshifts.filter((obj) => obj.status === "accept"); //  is for make the array of accept shift
-
+console.log("arraypfshifts", arrayofshifts);
+const acceptedshift = arrayofshifts.filter((obj) => obj.status == "accept"); //  is for make the array of accept shift
+console.log("acceptshift", acceptedshift);
 const CalenderPage = () => {
   const [test, setTest] = useState(false);
 
   const [data, setData] = useState([]);
   useEffect(() => {
     setData(acceptedshift);
+    console.log("acceptshift", acceptedshift);
   }, [appointments]);
+
+  console.log(data, "data");
 
   //can write from here
 
@@ -87,7 +91,8 @@ const CalenderPage = () => {
     if (eveningcheck!=true) {
       arraybycheckbox = arraybycheckbox.filter((element) => element.hour !== "evening");
     }
-    setData(arraybycheckbox);
+    let updateforarrayofcheckbox = arraybycheckbox.filter((obj) => obj.status == "accept"); 
+    setData(updateforarrayofcheckbox);
     console.log("hi");
  }, [morningcheck, lunchcheck, eveningcheck])
   return (
