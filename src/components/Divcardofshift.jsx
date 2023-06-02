@@ -22,8 +22,6 @@ function Divcardofshift({element, key, shiftsincalander, setshiftsincalander}) {
       const formattedDateString = formatDate(originalDateString);
 
         
-    console.log("starthourstate", realstarthour);
-    console.log("endhourstate", realendthour);
       
       
     //   console.log(formattedDateString);  // Output: 30.1.2023
