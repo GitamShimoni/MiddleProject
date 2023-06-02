@@ -27,8 +27,8 @@ const Appointment = ({ children, style, ...restProps }) => (
     {children}
   </Appointments.Appointment>
 );
-const shifts = (JSON.parse(localStorage.getItem("allshifts")))
-console.log(shifts);
+// const shifts = (JSON.parse(localStorage.getItem("allshifts")))
+// console.log(shifts);
 const worker = [{ 
 
   title: "Wedding",

@@ -1,0 +1,9 @@
+#shifts-page-header{
+    font-size: 5vw;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5vw;
+}
+.cardofshift-div{
+    margin: 5vw;
+}
