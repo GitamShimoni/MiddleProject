@@ -226,8 +226,10 @@ const Availability = () => {
             {dates.map((date, index) => {
               return (<td key={index*2}>
                 <button disabled={isCheckApproved(dates[index], "lunch")} onClick={() => handleInputClick(dates[index], `${daysOfTheWeek[index]}`, `lunch`)}
+
                 className={`${isCheckSelected(dates[index], "lunch") ? "selectedButton" : "unselectedButton"} ${isCheckApproved(dates[index], "lunch") ? "accepted-shift-button" : ""}`}
                 >{isCheckSelected(dates[index], "lunch") ? "✓" : "X"}</button>
+
               </td>)
             })}
           </tr>
@@ -236,8 +238,10 @@ const Availability = () => {
             {dates.map((date, index) => {
               return (<td key={index*3}>
                 <button disabled={isCheckApproved(dates[index], "evening")} onClick={() => handleInputClick(dates[index], `${daysOfTheWeek[index]}`, `evening`)}
+
                 className={`${isCheckSelected(dates[index], "evening") ? "selectedButton" : "unselectedButton"} ${isCheckApproved(dates[index], "evening") ? "accepted-shift-button" : ""}`}
                 >{isCheckSelected(dates[index], "evening") ? "✓" : "X"}</button>
+
               </td>)
             })}
           </tr>
