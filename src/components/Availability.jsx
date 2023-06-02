@@ -99,13 +99,19 @@ const Availability = () => {
       title: loginname,
       startDate: new Date(
         date.slice(-4),
-        parseInt((date.slice(3, 5))-1),
+
+
+        parseInt((date.slice(3,5))-1),
+
         date.slice(0, 2),
         starthourindex
       ),
       endDate: new Date(
         date.slice(-4),
-        parseInt((date.slice(3, 5))-1),
+
+
+        parseInt((date.slice(3,5))-1),
+
         date.slice(0, 2),
         endhourindex
         // new Date(year, monthIndex, day, hours)
