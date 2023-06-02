@@ -5,11 +5,14 @@ import Button from "@mui/material/Button";
 
 const Availability = () => {
   const [dates, setDates] = useState([]);
+  const [updatedShifts, setUpdatedShifts] = useState(JSON.parse(localStorage.getItem("allshifts")) || []);
   const [Formatteddates, setFormattedDates] = useState([]);
   const [dateCounter, setDateCounter] = useState(0);
   const loginname = localStorage.getItem("login");
   //   const [workerShifts, setWorkerShifts] = useState([]);
-  const [checkboxes, setCheckBoxes] = useState([]);
+  const [morningCheckBoxes, setMorningCheckBoxes] = useState([]);
+  const [lunchCheckBoxes, setLunchCheckBoxes] = useState([]);
+  const [eveningCheckBoxes, setEveningCheckBoxes] = useState([]);
 
   useEffect(() => {
     let currentDate = new Date();
@@ -43,21 +46,25 @@ const Availability = () => {
   }, [dateCounter]);
 
   useEffect(() =>{
-    const arr = [];
+    const morningArr = [];
+    const lunchArr = [];
+    const eveningArr = [];
     if(dates[0]!=undefined){
         for(let i=0; i<7; i++){
-            arr.push(isCheckSelected(dates[i],"morning"))
+          morningArr.push(isCheckSelected(dates[i],"morning"))
         }
         for(let i=0; i<7; i++){
-            arr.push(isCheckSelected(dates[i],"lunch"))
+          lunchArr.push(isCheckSelected(dates[i],"lunch"))
         }
         for (let i=0; i<7; i++){
-            arr.push(isCheckSelected(dates[i],"evening"))
+          eveningArr.push(isCheckSelected(dates[i],"evening"))
         }
         
     }
-    setCheckBoxes([...arr])
-}, [dates])
+    setMorningCheckBoxes([...morningArr])
+    setLunchCheckBoxes([...lunchArr])
+    setEveningCheckBoxes([...eveningArr])
+}, [dates, dateCounter])
 
 
   function handleLeftClick() {
@@ -92,20 +99,27 @@ const Availability = () => {
       title: loginname,
       startDate: new Date(
         date.slice(-4),
+
+
         parseInt((date.slice(3,5))-1),
+
         date.slice(0, 2),
         starthourindex
       ),
       endDate: new Date(
         date.slice(-4),
+
+
         parseInt((date.slice(3,5))-1),
+
         date.slice(0, 2),
         endhourindex
+        // new Date(year, monthIndex, day, hours)
       ),
       id: date + hour + loginname,
       day: day,
       hour: hour,
-      status: "selected",
+      status: "accept",
     };
 
 
@@ -118,11 +132,16 @@ const Availability = () => {
       allshifts = [...allshifts].filter(
         (object) => object.id != shift.id
       );
+      setUpdatedShifts(allshifts)
       allshifts && localStorage.setItem("allshifts", JSON.stringify(allshifts));
     } else {
       allshifts.push(shift);
+      setUpdatedShifts(allshifts)
+      console.log(updatedShifts);
       localStorage.setItem("allshifts", JSON.stringify(allshifts));
     }
+    
+    
   }
 
   function HighlightCurrentDay(date) {
@@ -136,11 +155,11 @@ const Availability = () => {
     if (date == formattedDate1) return true;
     else return false;
   }
-
+  const checkedshifts = JSON.parse(localStorage.getItem("allshifts"));
+  
   function isCheckSelected(date, hour) {
-    const checkedshifts = JSON.parse(localStorage.getItem("allshifts"));
     const checkDate = date+hour+loginname;
-    if (checkedshifts.some((obj) => { return obj.id == checkDate})){
+    if (updatedShifts.some((obj) => { return obj.id == checkDate})){
         return true;
     }
     else{
@@ -160,6 +179,17 @@ const Availability = () => {
     }
   }
   const todaysDate= new Date();
+
+  function checkCheckbox(date, hour){
+    const foundShift = allshifts.find(shift => shift.id === date+hour+loginname);
+
+    return foundShift !== undefined;
+  }
+  const daysOfTheWeek = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
+
+
+
+
   return (
     <div id="availble-main-div">
       <div id="availble-buttons-div">
@@ -212,17 +242,55 @@ const Availability = () => {
           </tr>
           <tr>
             <td>Morning</td>
-            <td>
-            
+            {dates.map((date, index) => {
+              return (<td key={index}>
+                <button onClick={() => handleInputClick(dates[index], `${daysOfTheWeek[index]}`, `morning`)}
+                className={isCheckSelected(dates[index], "morning") ? "selectedButton" : "unselectedButton"}>{isCheckSelected(dates[index], "morning") ? "✓" : "X"}</button>
+              </td>)
+            })}
+          </tr>
+          <tr>
+            <td>Lunch</td>
+            {dates.map((date, index) => {
+              return (<td key={index*2}>
+                <button onClick={() => handleInputClick(dates[index], `${daysOfTheWeek[index]}`, `lunch`)}
+                className={isCheckSelected(dates[index], "lunch") ? "selectedButton" : "unselectedButton"}>{isCheckSelected(dates[index], "lunch") ? "✓" : "X"}</button>
+              </td>)
+            })}
+          </tr>
+          <tr>
+            <td>Evening</td>
+            {dates.map((date, index) => {
+              return (<td key={index*2}>
+                <button onClick={() => handleInputClick(dates[index], `${daysOfTheWeek[index]}`, `evening`)}
+                className={isCheckSelected(dates[index], "evening") ? "selectedButton" : "unselectedButton"}>{isCheckSelected(dates[index], "evening") ? "✓" : "X"}</button>
+              </td>)
+            })}
+          </tr>
+        </tbody>
+      </table>
+      <div>
+      </div>
+    </div>
+  );
+};
+
+export default Availability;
+
+
+            {/* <td>
               <input className={(Formatteddates[0]>todaysDate) ? "checkbox-disabled" : ""} type="checkbox" defaultChecked ={checkboxes[0]}
                 onClick={() => handleInputClick(dates[0], "sunday", "morning")}
               />
             </td>
             <td>
-              <input type="checkbox" defaultChecked ={checkboxes[1]}
-                onClick={() => handleInputClick(dates[1], "monday", "morning")}
+              <input type="checkbox" checked={checkCheckbox(dates[1], "morning")}
+                onClick={() => {
+                  handleInputClick(dates[1], "monday", "morning");
+                }}
               />
             </td>
+            
             <td>
               <input type="checkbox" defaultChecked ={checkboxes[2]}
                 onClick={() => handleInputClick(dates[2], "tuesday", "morning")}
@@ -328,14 +396,4 @@ const Availability = () => {
                   handleInputClick(dates[6], "saturday", "evening")
                 }
               />
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <div>
-      </div>
-    </div>
-  );
-};
-
-export default Availability;
+            </td>*/}

@@ -1,4 +1,4 @@
-import { render } from 'react-dom';
+
 import './Divcardofshift.css';
 function Divcardofshift({element, key, shiftsincalander, setshiftsincalander}) {
     let obj=element;
