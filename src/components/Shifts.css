@@ -7,3 +7,8 @@
 .cardofshift-div{
     margin: 5vw;
 }
+#thisWeeksShifts-div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

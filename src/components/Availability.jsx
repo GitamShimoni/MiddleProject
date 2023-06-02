@@ -186,6 +186,7 @@ const Availability = () => {
   console.log(disableMorning);
 
   const daysOfTheWeek = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
+  const CappeddaysOfTheWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
   const todaysdate = new Date();
 
 
@@ -203,69 +204,40 @@ const Availability = () => {
       <table id="availble-table">
         <tbody>
           <tr>
-            <td>Day / Availble</td>
-            <td
-              className={
-                HighlightCurrentDay(dates[0]) ? "boldHighlightDate" : ""
-              }
-            >{`Sunday ${dates[0]}`}</td>
-            <td
-              className={
-                HighlightCurrentDay(dates[1]) ? "boldHighlightDate" : ""
-              }
-            >{`Monday ${dates[1]}`}</td>
-            <td
-              className={
-                HighlightCurrentDay(dates[2]) ? "boldHighlightDate" : ""
-              }
-            >{`Tuesday ${dates[2]}`}</td>
-            <td
-              className={
-                HighlightCurrentDay(dates[3]) ? "boldHighlightDate" : ""
-              }
-            >{`Wednsday ${dates[3]}`}</td>
-            <td
-              className={
-                HighlightCurrentDay(dates[4]) ? "boldHighlightDate" : ""
-              }
-            >{`Thursday ${dates[4]}`}</td>
-            <td
-              className={
-                HighlightCurrentDay(dates[5]) ? "boldHighlightDate" : ""
-              }
-            >{`Friday ${dates[5]}`}</td>
-            <td
-              className={
-                HighlightCurrentDay(dates[6]) ? "boldHighlightDate" : ""
-              }
-            >{`Saturday ${dates[6]}`}</td>
+            <td className="table-head-tr">Day / Availble</td>
+            {dates.map((date, index) =>{
+              return (<td key={index} id={HighlightCurrentDay(date) ? "boldHighlightDate" : ""} className="table-head-tr">{`${CappeddaysOfTheWeek[index]}  ${date}`}</td>)
+            })}
           </tr>
           <tr>
-            <td>Morning</td>
+            <td className="highlited-td-table" >Morning</td>
             {Formatteddates.map((date, index) => {
               return (<td key={index}>
                 <button disabled={isCheckApproved(dates[index], "morning")} onClick={() => {
                  handleInputClick(dates[index], `${daysOfTheWeek[index]}`, `morning`)}
                 }
-                 className={isCheckSelected(dates[index], "morning") ? "selectedButton" : "unselectedButton"}>{isCheckSelected(dates[index], "morning") ? "✓" : "X"}</button>
+                className={`${isCheckSelected(dates[index], "morning") ? "selectedButton" : "unselectedButton"} ${isCheckApproved(dates[index], "morning") ? "accepted-shift-button" : ""}`}
+                 >{isCheckSelected(dates[index], "morning") ? "✓" : "X"}</button>
               </td>)
             })}
           </tr>
           <tr>
-            <td>Lunch</td>
+            <td className="highlited-td-table">Lunch</td>
             {dates.map((date, index) => {
               return (<td key={index*2}>
-                <button disabled={isCheckApproved(dates[index], "morning")} onClick={() => handleInputClick(dates[index], `${daysOfTheWeek[index]}`, `lunch`)}
-                className={isCheckSelected(dates[index], "lunch") ? "selectedButton" : "unselectedButton"}>{isCheckSelected(dates[index], "lunch") ? "✓" : "X"}</button>
+                <button disabled={isCheckApproved(dates[index], "lunch")} onClick={() => handleInputClick(dates[index], `${daysOfTheWeek[index]}`, `lunch`)}
+                className={`${isCheckSelected(dates[index], "lunch") ? "selectedButton" : "unselectedButton"} ${isCheckApproved(dates[index], "lunch") ? "accepted-shift-button" : ""}`}
+                >{isCheckSelected(dates[index], "lunch") ? "✓" : "X"}</button>
               </td>)
             })}
           </tr>
           <tr>
-            <td>Evening</td>
+            <td className="highlited-td-table">Evening</td>
             {dates.map((date, index) => {
               return (<td key={index*3}>
-                <button disabled={isCheckApproved(dates[index], "morning")} onClick={() => handleInputClick(dates[index], `${daysOfTheWeek[index]}`, `evening`)}
-                className={isCheckSelected(dates[index], "evening") ? "selectedButton" : "unselectedButton"}>{isCheckSelected(dates[index], "evening") ? "✓" : "X"}</button>
+                <button disabled={isCheckApproved(dates[index], "evening")} onClick={() => handleInputClick(dates[index], `${daysOfTheWeek[index]}`, `evening`)}
+                className={`${isCheckSelected(dates[index], "evening") ? "selectedButton" : "unselectedButton"} ${isCheckApproved(dates[index], "evening") ? "accepted-shift-button" : ""}`}
+                >{isCheckSelected(dates[index], "evening") ? "✓" : "X"}</button>
               </td>)
             })}
           </tr>
