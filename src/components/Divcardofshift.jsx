@@ -1,7 +1,13 @@
 
+import { useEffect, useState } from 'react';
 import './Divcardofshift.css';
 function Divcardofshift({element, key, shiftsincalander, setshiftsincalander}) {
     let obj=element;
+    // const [arrayofshiftsformanager, setArrayofshiftsformanager] = useState(JSON.parse(localStorage.getItem("allshifts")))
+    const [acceptedisclicked, setAcceptedIsClicked] = useState(false);
+    const [realstarthour, setRealstarthour] = useState (null);
+    const [realendthour, setRealendthour] = useState (null);
+    const [objectStatus, setObjectStatus] = useState(obj.status);
     function formatDate(dateString) {
         const date = new Date(dateString);
         
@@ -14,45 +20,71 @@ function Divcardofshift({element, key, shiftsincalander, setshiftsincalander}) {
       
       const originalDateString = obj.startDate;
       const formattedDateString = formatDate(originalDateString);
+
+        
+    console.log("starthourstate", realstarthour);
+    console.log("endhourstate", realendthour);
       
       
     //   console.log(formattedDateString);  // Output: 30.1.2023
     return(
         <div className="cardofshift-container">
             <div>{obj.title}</div>
-            <div>{obj.status}</div>
+            <div>{`${objectStatus}`}</div>
             <div>{formattedDateString}</div>
             <div>{obj.hour}</div> 
-            <button onClick={()=>setDataInCalender(obj)}>accept shift</button> 
+            <button onClick={() => setAcceptedIsClicked(!acceptedisclicked)}>accept shift</button> 
             <button onClick={()=>takeOutDataInCalender(obj.id)}>decline shift</button> 
+            {acceptedisclicked && <>
+            <input type="time" onChange={(e)=> setRealstarthour(e.target.value) && console.log("starthour", e.target.value)} />
+            <input type="time" onChange={(e)=> setRealendthour(e.target.value) && console.log("endhour", e.target.value)} />
+            <button onClick={()=>setDataInCalender(obj)}>Submit</button>
+            </>
+          }
         </div>
     )
+    
     function setDataInCalender(obj){
         const dateforset = new Date(obj.startDate);
         const day1set = dateforset.getDate();
         const month1set = dateforset.getMonth();
         const year1set = dateforset.getFullYear();
 
-        let starthour=null;
-        let endhour=null;
-        if(obj.hour=="morning"){
+        let starthour=realstarthour;
+        let endhour=realendthour;
+        let startminutes = 0;
+        let endminutes = 0;
+        if(starthour==null||endhour==null){
+          alert("You did not enter hours. Hours entered automatically")
+          if(obj.hour=="morning"){
             starthour=9;
-            endhour=12;
+            endhour=13;
         }
         if(obj.hour=="lunch"){
-            starthour=13;
-            endhour=16;
+            starthour=14;
+            endhour=18;
         }
         if(obj.hour=="evening"){
-            starthour=17;
-            endhour=20;
+            starthour=19;
+            endhour=22;
         }
-        
+      }else{
+        starthour=realstarthour.slice(0,2);
+        endhour=realendthour.slice(0,2);
+        console.log(endhour);
+        startminutes=realstarthour.slice(-2);
+        endminutes=realendthour.slice(-2);
+
+      }
         let newShiftinCalender ={
+            starShiftHour: starthour,
+            endShiftHour: endhour,
+            startShiftMinutes: startminutes,
+            endShiftMinutes: endminutes,
             day: obj.day,
             title: obj.title,
-            startDate: new Date(year1set, month1set, day1set, starthour, 0),
-            endDate: new Date(year1set, month1set, day1set, endhour, 0),
+            startDate: new Date(year1set, month1set, day1set, starthour, startminutes),
+            endDate: new Date(year1set, month1set, day1set, endhour, endminutes),
             id: obj.id,
             hour: obj.hour,
             status: "accept",
@@ -69,12 +101,15 @@ function Divcardofshift({element, key, shiftsincalander, setshiftsincalander}) {
         console.log("existingarray", existingArray);
         for (let i = 0; i < existingArray.length; i++) {
             if (existingArray[i].id === newShiftinCalender.id) {
+                existingArray[i]=newShiftinCalender;
                 existingArray[i].status = "accept";
               break; // Stop the loop once the update is done
             }
           }
           localStorage.setItem("allshifts", JSON.stringify(existingArray));
         }
+        setObjectStatus("accepted")
+
         }
     function takeOutDataInCalender(idofobj){
         if (shiftsincalander.some(element => element.id == idofobj)){
@@ -87,6 +122,7 @@ function Divcardofshift({element, key, shiftsincalander, setshiftsincalander}) {
              for (let i = 0; i < existingArraybeforedeletelocal.length; i++) {
                 if (existingArraybeforedeletelocal[i].id === idofobj) {
                     existingArraybeforedeletelocal[i].status = "selected";
+                    setObjectStatus("selected")
                   break; // Stop the loop once the update is done
                 }
               }
