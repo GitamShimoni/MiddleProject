@@ -92,13 +92,13 @@ const Availability = () => {
       title: loginname,
       startDate: new Date(
         date.slice(-4),
-        date.slice(2, 4),
+        parseInt((date.slice(3,5))-1),
         date.slice(0, 2),
         starthourindex
       ),
       endDate: new Date(
         date.slice(-4),
-        date.slice(2, 4),
+        parseInt((date.slice(3,5))-1),
         date.slice(0, 2),
         endhourindex
       ),
