@@ -1,5 +1,6 @@
 #shifts-page-header{
-    font-size: 5vw;
+    margin-top: 5vw;
+    font-size: 3vw;
     display: flex;
     justify-content: center;
     margin-bottom: 5vw;
@@ -11,4 +12,26 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+}
+#otherWeeksShifts-div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+#nextweekshifts-div{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+#unordered-list-ofshifts{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+.this-shifts-header{
+    text-decoration-line: underline;
 }

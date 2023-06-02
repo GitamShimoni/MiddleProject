@@ -25,12 +25,11 @@ const WorkerShiftsCard = ({element}) => {
 
   return (
     <>
-        <li className="cardofshift-div">
-            <div>{`${newdate}`}</div>
-            <div>{`${element.day} ${element.hour}`}</div> 
+        <div className="cardofshift-div">
+            <div className='dateoftheshift-div'>{`${newdate}`}</div>
+            <div>{`${element.day.charAt(0).toUpperCase() + element.day.slice(1)} ${element.hour.charAt(0).toUpperCase() + element.hour.slice(1)}`}</div> 
             <div>{`Shift Hours: ${element.startShiftHour}:${startFixedMinutes} - ${element.endShiftHour}:${endFixedMinutes}`}</div>
-
-        </li>
+        </div>
     </>
   )
 }
