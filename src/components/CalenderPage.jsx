@@ -28,7 +28,7 @@ const Appointment = ({ children, style, ...restProps }) => (
     {children}
   </Appointments.Appointment>
 );
-
+console.log(appointments, "appointments")
 const shifts = JSON.parse(localStorage.getItem("allshifts"));
 console.log(shifts);
 // const worker = [{
@@ -58,16 +58,14 @@ console.log(shifts);
 // ]
 
 let arrayofshifts = JSON.parse(localStorage.getItem("allshifts")) || []; //  this 2 lines
-console.log("arraypfshifts", arrayofshifts);
 const acceptedshift = arrayofshifts.filter((obj) => obj.status == "accept"); //  is for make the array of accept shift
-console.log("acceptshift", acceptedshift);
 const CalenderPage = () => {
   const [test, setTest] = useState(false);
 
   const [data, setData] = useState([]);
   useEffect(() => {
     setData(acceptedshift);
-    console.log("acceptshift", acceptedshift);
+  
   }, [appointments]);
 
   console.log(data, "data");
@@ -82,7 +80,8 @@ const CalenderPage = () => {
   const [savearrayofshiftsformanager, setsaveArrayofshiftsformanager] = useState(JSON.parse(localStorage.getItem("allshifts"))); // this is for save
   // let arrayofshiftsformanager = (JSON.parse(localStorage.getItem("allshifts")))
   useEffect (()=>{
-    let arraybycheckbox = savearrayofshiftsformanager;
+
+    let arraybycheckbox = JSON.parse(localStorage.getItem("allshifts"));
     if (morningcheck!=true) {
       arraybycheckbox = arraybycheckbox.filter((element) => element.hour !== "morning");
     }
@@ -94,7 +93,6 @@ const CalenderPage = () => {
     }
     let updateforarrayofcheckbox = arraybycheckbox.filter((obj) => obj.status == "accept"); 
     setData(updateforarrayofcheckbox);
-    console.log("hi");
  }, [morningcheck, lunchcheck, eveningcheck])
   return (
     <>
@@ -155,7 +153,6 @@ const CalenderPage = () => {
     </>
   );
   
- 
 
   function searchWorkerinCalander(workernameincalander){
     workernameincalander=workernameincalander.toLowerCase();
