@@ -21,6 +21,7 @@ const WorkerShiftsCard = ({element}) => {
         <li className="cardofshift-div">
             <div>{`${newdate}`}</div>
             <div>{`${element.day} ${element.hour}`}</div> 
+            <div>{`Shift Hours: ${element.startShiftHour}:${element.startShiftMinutes} - ${element.endShiftHour}:${element.endShiftMinutes}`}</div>
 
         </li>
     </>

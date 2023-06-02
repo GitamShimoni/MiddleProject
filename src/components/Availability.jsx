@@ -14,6 +14,8 @@ const Availability = () => {
   const [lunchCheckBoxes, setLunchCheckBoxes] = useState([]);
   const [eveningCheckBoxes, setEveningCheckBoxes] = useState([]);
 
+  const [disableMorning, setDisableMorning] = useState([]);
+
   useEffect(() => {
     let currentDate = new Date();
     let currentDayOfWeek = currentDate.getDay();
@@ -52,6 +54,7 @@ const Availability = () => {
     if(dates[0]!=undefined){
         for(let i=0; i<7; i++){
           morningArr.push(isCheckSelected(dates[i],"morning"))
+          disableMorning[i]=isBefore(Formatteddates[i])
         }
         for(let i=0; i<7; i++){
           lunchArr.push(isCheckSelected(dates[i],"lunch"))
@@ -119,7 +122,7 @@ const Availability = () => {
       id: date + hour + loginname,
       day: day,
       hour: hour,
-      status: "accept",
+      status: "selected",
     };
 
 
@@ -166,27 +169,24 @@ const Availability = () => {
         return false;
     }
   }
-  function disableCheckboxes(datesent){
-    console.log(datesent);
-    const date = new Date();
-    if (date>datesent){
-        console.log(true);
-        return true;
+  function isCheckApproved(date, hour) {
+    const checkDate = date+hour+loginname;
+    for (let i=0; i<updatedShifts.length; i++){
+      if (updatedShifts[i].id==checkDate){
+        return updatedShifts[i].status=="accept";
+      }
     }
-    else{
-        console.log(false);
-        return false;
-    }
+    return false;
   }
-  const todaysDate= new Date();
-
-  function checkCheckbox(date, hour){
-    const foundShift = allshifts.find(shift => shift.id === date+hour+loginname);
-
-    return foundShift !== undefined;
+  function isBefore(date) {
+    return (new Date() > date)
   }
+
+
+  console.log(disableMorning);
+
   const daysOfTheWeek = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
-
+  const todaysdate = new Date();
 
 
 
@@ -242,10 +242,12 @@ const Availability = () => {
           </tr>
           <tr>
             <td>Morning</td>
-            {dates.map((date, index) => {
+            {Formatteddates.map((date, index) => {
               return (<td key={index}>
-                <button onClick={() => handleInputClick(dates[index], `${daysOfTheWeek[index]}`, `morning`)}
-                className={isCheckSelected(dates[index], "morning") ? "selectedButton" : "unselectedButton"}>{isCheckSelected(dates[index], "morning") ? "✓" : "X"}</button>
+                <button disabled={isCheckApproved(dates[index], "morning")} onClick={() => {
+                 handleInputClick(dates[index], `${daysOfTheWeek[index]}`, `morning`)}
+                }
+                 className={isCheckSelected(dates[index], "morning") ? "selectedButton" : "unselectedButton"}>{isCheckSelected(dates[index], "morning") ? "✓" : "X"}</button>
               </td>)
             })}
           </tr>
@@ -253,7 +255,7 @@ const Availability = () => {
             <td>Lunch</td>
             {dates.map((date, index) => {
               return (<td key={index*2}>
-                <button onClick={() => handleInputClick(dates[index], `${daysOfTheWeek[index]}`, `lunch`)}
+                <button disabled={isCheckApproved(dates[index], "morning")} onClick={() => handleInputClick(dates[index], `${daysOfTheWeek[index]}`, `lunch`)}
                 className={isCheckSelected(dates[index], "lunch") ? "selectedButton" : "unselectedButton"}>{isCheckSelected(dates[index], "lunch") ? "✓" : "X"}</button>
               </td>)
             })}
@@ -261,8 +263,8 @@ const Availability = () => {
           <tr>
             <td>Evening</td>
             {dates.map((date, index) => {
-              return (<td key={index*2}>
-                <button onClick={() => handleInputClick(dates[index], `${daysOfTheWeek[index]}`, `evening`)}
+              return (<td key={index*3}>
+                <button disabled={isCheckApproved(dates[index], "morning")} onClick={() => handleInputClick(dates[index], `${daysOfTheWeek[index]}`, `evening`)}
                 className={isCheckSelected(dates[index], "evening") ? "selectedButton" : "unselectedButton"}>{isCheckSelected(dates[index], "evening") ? "✓" : "X"}</button>
               </td>)
             })}
