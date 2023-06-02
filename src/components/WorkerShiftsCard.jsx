@@ -12,16 +12,23 @@ const WorkerShiftsCard = ({element}) => {
       }
     //   const originalDateString = obj.startDate;
     //   const formattedDateString = formatDate(originalDateString);
+    let startFixedMinutes = element.startShiftMinutes;
+    let endFixedMinutes = element.endShiftMinutes;
 
    const newdate = formatDate(element.startDate)
-
+      if(startFixedMinutes == "0"){
+        startFixedMinutes="00";
+      }
+      if(endFixedMinutes == "0"){
+        endFixedMinutes="00";
+      }
 
   return (
     <>
         <li className="cardofshift-div">
             <div>{`${newdate}`}</div>
             <div>{`${element.day} ${element.hour}`}</div> 
-            <div>{`Shift Hours: ${element.startShiftHour}:${element.startShiftMinutes} - ${element.endShiftHour}:${element.endShiftMinutes}`}</div>
+            <div>{`Shift Hours: ${element.startShiftHour}:${startFixedMinutes} - ${element.endShiftHour}:${endFixedMinutes}`}</div>
 
         </li>
     </>

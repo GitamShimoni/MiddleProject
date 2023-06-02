@@ -14,13 +14,14 @@ import "./CalenderPage.css";
 import Divcardofshift from "./Divcardofshift";
 const loginname = localStorage.getItem("login");
 const currentDate = getCurrentFormattedDate();
+const mycolor = "#ff9393"
 
 const Appointment = ({ children, style, ...restProps }) => (
   <Appointments.Appointment
     {...restProps}
     style={{
       ...style,
-      backgroundColor: "red",
+      backgroundColor: mycolor,
       borderRadius: "10px",
     }}
   >

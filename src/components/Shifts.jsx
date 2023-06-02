@@ -54,7 +54,7 @@ function Shifts() {
       <div>
         <h1 id="shifts-page-header"> {`Hello ${name}, These are your shifts:`} </h1>
       </div>
-      <div>
+      <div id="thisWeeksShifts-div">
         <h1>This week shifts:</h1>
         <ul id="unordered-list-ofshifts">
          {filteredShifts?.map((element, index) =>

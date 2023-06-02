@@ -77,7 +77,7 @@ function Divcardofshift({element, key, shiftsincalander, setshiftsincalander}) {
 
       }
         let newShiftinCalender ={
-            starShiftHour: starthour,
+            startShiftHour: starthour,
             endShiftHour: endhour,
             startShiftMinutes: startminutes,
             endShiftMinutes: endminutes,
