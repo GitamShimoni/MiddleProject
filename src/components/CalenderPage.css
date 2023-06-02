@@ -4,6 +4,7 @@
     width: 60vw;
     display: flex;
     justify-content: center;
+    flex-direction: column;
 }
 #container-all-ater-calender{
     margin: auto;
@@ -12,4 +13,10 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
+}
+.divcheckbox{
+    display: flex;
+}
+#filternavbar-calander{
+    display: flex;
 }
