@@ -8,10 +8,15 @@ function Shifts() {
   const loginName = (localStorage.getItem("login"));
   const name = loginName.replace(/([A-Z])/g, ' $1');
 
+  const [ThisWeeksShiftsEmpty, setThisWeeksShiftsEmpty] = useState(true)
+  const [OtherWeeksShiftsEmpty, setOtherWeeksShiftsEmpty] = useState(true)
+  const [AllWeeksShiftsEmpty, setAllWeeksShiftsEmpty] = useState(false)
+
     let today = new Date();
     let currentDayOfWeek = today.getDay(); // 0 (Sunday) through 6 (Saturday)
     let saturdayOffset = 6 - currentDayOfWeek; // Number of days until Saturday
     let saturdayDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + saturdayOffset);
+    saturdayDate.setHours(24);
 
   useEffect(() => {
     function isEarlierDate(dateString1, dateString2) {
@@ -27,16 +32,17 @@ function Shifts() {
     let filteredshiftThisWeek = myfilteredshifts.filter((obj) => {
       return !isEarlierDate(obj.startDate, saturdayDate)
     })
-    console.log(filteredshiftThisWeek);
+
+    if (filteredshiftThisWeek.length > 0)
+      setThisWeeksShiftsEmpty(false);
     filteredshiftThisWeek = filteredshiftThisWeek.sort(function(a, b) {
       let dateA = new Date(a.endDate);
       let dateB = new Date(b.endDate);
       return dateA - dateB;
     });
     // filteredshiftThisWeek = filteredshiftThisWeek.sort((a,b) => { a.endDate - b.endDate})
-    console.log(filteredshiftThisWeek);
     setFilteredShifts(filteredshiftThisWeek)
-
+    console.log(filteredshiftThisWeek);
     
     let NextWeekfilteredshifts = myfilteredshifts.filter((obj) => {
       return isEarlierDate(obj.startDate, saturdayDate)
@@ -46,25 +52,36 @@ function Shifts() {
       let dateB = new Date(b.endDate);
       return dateA - dateB;
     });
+    if (NextWeekfilteredshifts.length > 0)
+      setOtherWeeksShiftsEmpty(false);
+    
+    if (!(NextWeekfilteredshifts.length + filteredshiftThisWeek.length === 0))
+      setAllWeeksShiftsEmpty(true);
     setNextWeekFilteredShifts(NextWeekfilteredshifts)
+    console.log(NextWeekfilteredshifts);
   }, [shifts, loginName])
 
   return(
     <>
       <div>
-        <h1 id="shifts-page-header"> {`Hello ${name}, These are your shifts:`} </h1>
+      {AllWeeksShiftsEmpty ? <h1 id="shifts-page-header"> {`Hello ${name}, These are your shifts`} </h1> :
+       <h1 id="shifts-page-header"> {`Hello ${name}, You have no accepted shifts.`} </h1>}
       </div>
       <div id="thisWeeksShifts-div">
-        <h1>This week shifts:</h1>
-        <ul id="unordered-list-ofshifts">
+        {ThisWeeksShiftsEmpty ? <></> : <h1 className="this-shifts-header">This week shifts:</h1>}
+        <div id="unordered-list-ofshifts">
          {filteredShifts?.map((element, index) =>
          <WorkerShiftsCard element={element} key={index}/>)}
-        </ul>
+        </div>
       </div>
-      <div>
-        <h1>Next Weeks shifts:</h1>
-        {nextWeekfilteredShifts?.map((element, index) =>
-         <WorkerShiftsCard element={element} key={index}/>)}
+      <div id="otherWeeksShifts-div">
+        <div id="nextweekheader-div">
+        {OtherWeeksShiftsEmpty ? <></> : <h1 className="this-shifts-header">Next Weeks shifts:</h1>}
+        </div>
+        <div id="nextweekshifts-div">
+          {nextWeekfilteredShifts?.map((element, index) =>
+          <WorkerShiftsCard element={element} key={index}/>)}
+        </div>
       </div>
     </>
   )

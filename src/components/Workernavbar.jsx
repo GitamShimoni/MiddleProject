@@ -12,11 +12,11 @@ function Workernavbar() {
           ></img>
         </div>
 
-        <Link to={"/Worker"}>
+        <Link to={"/worker"}>
           <div className="object-nav">Shifts</div>
         </Link>
-        <Link to={"Avaibility"}>
-          <div className="object-nav">Avaibility</div>
+        <Link to={"availability"}>
+          <div className="object-nav">Availability</div>
         </Link>
         <Link to={"phonelist"}>
           <div className="object-nav">Phones list</div>
