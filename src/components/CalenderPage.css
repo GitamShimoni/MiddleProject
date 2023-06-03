@@ -9,7 +9,7 @@
 #container-all-ater-calender{
     margin: auto;
     margin-top: 3vw;
-    width: 60vw;
+    width: 100vw;
     display: flex;
     justify-content: center;
     flex-direction: column;

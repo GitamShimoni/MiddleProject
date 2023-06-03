@@ -1,5 +1,9 @@
 import './Manager.css';
 import CalenderPage from './CalenderPage';
+
+import Managermessage from './Managermessage';
+
+
     let loginname = localStorage.getItem("login")
     const firstName = loginname.split(/(?=[A-Z])/)[0];
     const date = new Date();
@@ -14,7 +18,10 @@ import CalenderPage from './CalenderPage';
     } else {
     stringhour = "Night";
     }
+
 function Manager (){
+    const nameofmanager = localStorage.getItem("login");
+    console.log(nameofmanager, "nameofmanager");
     return (
         <>
         <div id="headline-manager-page">
@@ -27,7 +34,8 @@ function Manager (){
             </div>
         </div>
         <CalenderPage></CalenderPage>
+        <Managermessage nameofmanager={nameofmanager}></Managermessage>
         </>
     )  
 }
-export default Manager
+export default Manager;

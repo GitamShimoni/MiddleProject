@@ -29,33 +29,8 @@ const Appointment = ({ children, style, ...restProps }) => (
   </Appointments.Appointment>
 );
 console.log(appointments, "appointments")
-const shifts = JSON.parse(localStorage.getItem("allshifts"));
+const shifts = JSON.parse(localStorage.getItem("allshifts"))||[];
 console.log(shifts);
-// const worker = [{
-
-
-//   title: "Wedding",
-//   startDate: new Date(2023, 4, 30, 11, 0),
-//   endDate: new Date(2023, 4, 30, 15, 0),
-//   id: "29.05.2023morning",
-//   status: "selected",
-// }, {
-
-//   title: "Gitam",
-//   startDate: new Date(2023, 4, 31, 13, 0),
-//   endDate: new Date(2023, 4, 31, 16, 0),
-//   id: "31.05.2023morning",
-//   status: "accept",
-// },
-// {
-//   title: "GitamOfek",
-// day: "tuesday",
-// startDate: new Date(2023, 4, 29, 13, 0),
-//   endDate: new Date(2023, 4, 29, 16, 0),
-// id: "30.05.2023morningGitamOfek",
-// status: "accept"
-// }
-// ]
 
 let arrayofshifts = JSON.parse(localStorage.getItem("allshifts")) || []; //  this 2 lines
 const acceptedshift = arrayofshifts.filter((obj) => obj.status == "accept"); //  is for make the array of accept shift
@@ -76,12 +51,11 @@ const CalenderPage = () => {
   const [lunchcheck, setLunchcheck]=useState(true);
   const [eveningcheck, setEveningcheck]=useState(true);
 
-  const [arrayofshiftsformanager, setArrayofshiftsformanager] = useState(JSON.parse(localStorage.getItem("allshifts"))); // this is in usestate to present it in filter
-  const [savearrayofshiftsformanager, setsaveArrayofshiftsformanager] = useState(JSON.parse(localStorage.getItem("allshifts"))); // this is for save
-  // let arrayofshiftsformanager = (JSON.parse(localStorage.getItem("allshifts")))
+  const [arrayofshiftsformanager, setArrayofshiftsformanager] = useState(JSON.parse(localStorage.getItem("allshifts"))||[]); // this is in usestate to present it in filter
+  const [savearrayofshiftsformanager, setsaveArrayofshiftsformanager] = useState(JSON.parse(localStorage.getItem("allshifts"))||[]); // this is for save
   useEffect (()=>{
 
-    let arraybycheckbox = JSON.parse(localStorage.getItem("allshifts"));
+    let arraybycheckbox = JSON.parse(localStorage.getItem("allshifts"))||[];
     if (morningcheck!=true) {
       arraybycheckbox = arraybycheckbox.filter((element) => element.hour !== "morning");
     }
