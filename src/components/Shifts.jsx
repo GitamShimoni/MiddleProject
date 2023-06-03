@@ -1,6 +1,7 @@
 import {useState, useEffect} from "react";
 import WorkerShiftsCard from "./WorkerShiftsCard";
 import './Shifts.css';
+import WorkerInbox from "./WorkerInbox";
 function Shifts() {
   const [shifts] = useState(JSON.parse(localStorage.getItem("allshifts")) || []);
   const [filteredShifts, setFilteredShifts] = useState();
@@ -67,29 +68,33 @@ function Shifts() {
       {AllWeeksShiftsEmpty ? <h1 id="shifts-page-header"> {`${name}, These are your shifts`} </h1> :
        <h1 id="shifts-page-header"> {`Hello ${name}, You have no accepted shifts.`} </h1>}
       </div>
+      {ThisWeeksShiftsEmpty ? <></> :
       <div id="thisWeeksShifts-div">
         <div id="unordered-list-ofshifts">
           <div id="thisweeksheader-div">
-            {ThisWeeksShiftsEmpty ? <></> : <h1 className="this-shifts-header">This week shifts:</h1>}
+            <h1 className="this-shifts-header">This week shifts:</h1>
           </div>
           <div id="thisweeksshifts-div">
             {filteredShifts?.map((element, index) =>
-            <WorkerShiftsCard element={element} key={index}/>)}
+            <WorkerShiftsCard element={element} key={index*4}/>)}
           </div>
         </div>
-      </div>
+      </div>}
+      {OtherWeeksShiftsEmpty ? <></> : 
       <div id="otherWeeksShifts-div">
         <div id="nextweekheader-div">
-        {OtherWeeksShiftsEmpty ? <></> : <h1 className="this-shifts-header">Next Weeks shifts:</h1>}
+        <h1 className="this-shifts-header">Next Weeks shifts:</h1>
         </div>
         <div id="nextweekshifts-div">
           {nextWeekfilteredShifts?.map((element, index) =>
           <WorkerShiftsCard element={element} key={index}/>)}
         </div>
-      </div>
-
+      </div>}
             <div id="shiftpage-messages-div">
               <h1>Inbox</h1>
+              <div id="inbox-messages-div">
+                <WorkerInbox/>
+              </div>
             </div>
     </div>
   )

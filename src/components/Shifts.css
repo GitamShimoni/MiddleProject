@@ -32,11 +32,6 @@
     justify-content: center;
     flex-direction: column;
     padding: 3vw;
-    background: linear-gradient(
-    260deg,
-    rgb(85, 188, 198) 0%,
-    rgb(72, 186, 247) 100%
-  );
     border-radius: 15px;
     max-width: 80vw;
 }
@@ -103,3 +98,10 @@
         rgb(126, 141, 255) 100%
       );
 } */
+
+#shiftpage-messages-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
