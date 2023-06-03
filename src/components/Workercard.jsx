@@ -5,8 +5,9 @@ function Workercard ({data}){
     console.log(data.FullName)
     console.log(data.Phone)
    return(
-    <div className="workercard-container">
-       <div className='workercard-fullname'><h4>{data.FullName}</h4></div>
+      <div id='workercard-div'>
+    <div className={`workercard-container ${data.Admin ? "workercard-admin" : ""}`}>
+       <div className='workercard-fullname'><h4>{data.FullName.replace(/([A-Z])/g, ' $1').trim()}</h4></div>
        <div className='workercard-phone' ><h4>{data.Phone}</h4></div>
        <div className='linktocall'>
        <a href={`tel:${data.Phone}`}>
@@ -14,6 +15,8 @@ function Workercard ({data}){
        </a>
        </div>
     </div>
+       <hr />
+      </div>
    )
 }
 export default Workercard;

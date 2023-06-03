@@ -1,6 +1,21 @@
 import { Link, Outlet } from "react-router-dom";
 import "./Workernavbar.css";
 function Workernavbar() {
+  let loginname = localStorage.getItem("login")
+  const firstName = loginname.split(/(?=[A-Z])/)[0];
+  const date = new Date();
+  const hour = date.getHours();
+  let stringhour;
+  if (hour >= 6 && hour < 12) {
+    stringhour = "Morning";
+  } else if (hour >= 12 && hour < 17) {
+    stringhour = "Noon";
+  } else if (hour >= 17 && hour < 21) {
+    stringhour = "Evening";
+  } else {
+    stringhour = "Night";
+  }
+
   return (
     <div>
       <div id="navbardiv">
@@ -11,7 +26,9 @@ function Workernavbar() {
             alt="pic"
           ></img>
         </div>
-
+        <div id="goodhour-div">
+          <h3 id="goodhour-h3">{`Good ${stringhour}, ${firstName}`}</h3>
+        </div>
         <Link to={"/worker"}>
           <div className="object-nav">Shifts</div>
         </Link>

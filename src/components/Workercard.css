@@ -3,6 +3,29 @@
     justify-content: space-evenly;
     width: 100%;
     align-items: center;
+    margin: 2vw;
+    background: linear-gradient(
+    160deg,
+    rgb(210, 223, 255) 0%,
+    rgb(89, 108, 251) 100%
+  );
+  border-radius: 15px;
+  padding: 1.5vw;
+}
+#workercard-div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+hr{
+    border: none;
+    border-top: 1px solid rgba(157, 173, 255, 0.3);
+    border-bottom: 1px solid rgba(0,0,0,.08);
+    margin: 1vw 0;
+    width: 30vw;
+    color: black;
+
 }
 .workercard-fullname{
   flex: 1;
@@ -15,6 +38,16 @@
 .linktocall{
     flex: 1;
     text-align: center;
+}
+.workercard-admin{
+    background: linear-gradient(
+    160deg,
+    rgb(235, 248, 62) 0%,
+    rgb(242, 228, 30) 100%
+  );
+  border-radius: 15px;
+  padding: 1.5vw;
+  box-shadow: rgb(175, 243, 255) 0px 7px 29px 4px;
 }
 @media screen and (max-width:500px) {
     .workercard-container{
