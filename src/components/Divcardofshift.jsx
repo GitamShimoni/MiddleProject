@@ -27,15 +27,15 @@ function Divcardofshift({element, key, shiftsincalander, setshiftsincalander}) {
     //   console.log(formattedDateString);  // Output: 30.1.2023
     return(
         <div className="cardofshift-container">
-            <div>{obj.title}</div>
-            <div>{`${objectStatus}`}</div>
-            <div>{formattedDateString}</div>
-            <div>{obj.hour}</div> 
-            <button onClick={() => setAcceptedIsClicked(!acceptedisclicked)}>accept shift</button> 
-            <button onClick={()=>takeOutDataInCalender(obj.id)}>decline shift</button> 
+            <div className='object-parts'>{obj.title}</div>
+            <div className='object-parts'>{`${objectStatus}`}</div>
+            <div className='object-parts'>{formattedDateString}</div>
+            <div className='object-parts'>{obj.hour}</div> 
+            <button className='object-parts button-incard' onClick={() => setAcceptedIsClicked(!acceptedisclicked)}>accept shift</button> 
+            <button className='object-parts button-incard' onClick={()=>takeOutDataInCalender(obj.id)}>decline shift</button> 
             {acceptedisclicked && <>
-            <input type="time" onChange={(e)=> setRealstarthour(e.target.value) && console.log("starthour", e.target.value)} />
-            <input type="time" onChange={(e)=> setRealendthour(e.target.value) && console.log("endhour", e.target.value)} />
+            <input className='object-parts button-incard' type="time" onChange={(e)=> setRealstarthour(e.target.value) && console.log("starthour", e.target.value)} />
+            <input className='object-parts button-incard' type="time" onChange={(e)=> setRealendthour(e.target.value) && console.log("endhour", e.target.value)} />
             <button onClick={()=>setDataInCalender(obj)}>Submit</button>
             </>
           }

@@ -1,7 +1,30 @@
+@media screen and (min-width: 600px) {
+    .object-parts{
+        font-size: 18px;
+  }
+  .cardofshift-container{
+    width: 540px;
+    height: 28px;
+  }
+  .button-incard{
+    width: 92px;
+    height: 26px;
+    font-size: 18px;
+    padding: 0.5;
+  }
+}
+
 .cardofshift-container{
     display: flex;
     justify-content: space-around;
-    font-size: 2vw;
+    width: 90%;
+    align-self: center;
+    margin: 3px;
+    background-color: rgb(89, 108, 251);
+    border-radius: 10px;
+    padding: 1px;
+    align-items: center;
+    max-width: 600px;
 }
 .cardofshift-div{
     font-size: 1.5vw;
@@ -9,6 +32,16 @@
     border-radius: 20px;
     padding: 2vw;
 }
+.object-parts{
+    font-size: 3vw;
+    color: white;
+}
 .dateoftheshift-div{
     font-weight: bold;
+}
+.button-incard{
+    background-color: white;
+    color: rgb(89, 108, 251);
+    border-radius: 5px;
+    padding: 1px;
 }

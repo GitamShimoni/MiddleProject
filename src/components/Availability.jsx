@@ -1,6 +1,7 @@
 import "./availability.css";
 import { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
+import Message from "./Message";
 
 
 const Availability = () => {
@@ -192,6 +193,7 @@ const Availability = () => {
 
 
   return (
+    <>
     <div id="availble-main-div">
       <div id="availble-buttons-div">
         <Button onClick={handleLeftClick} variant="contained">
@@ -250,6 +252,8 @@ const Availability = () => {
       <div>
       </div>
     </div>
+    <Message loginname={loginname}></Message>
+    </>
   );
 };
 

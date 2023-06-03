@@ -15,7 +15,7 @@ function App() {
       <Route path="/" element={<Loginpage />} />
       <Route path="Worker" element={<Workernavbar />}>
         <Route index element={<Shifts />} />
-        <Route path ="Avaibility" element={<Availability />} />
+        <Route path ="availability" element={<Availability />} />
         <Route path="phonelist" element={<Phoneslist />} />
       </Route>
       <Route path="Manager" element={<Manager/>}/>
