@@ -62,16 +62,20 @@ function Shifts() {
   }, [shifts, loginName])
 
   return(
-    <>
+    <div id="shifts-page-container">
       <div>
-      {AllWeeksShiftsEmpty ? <h1 id="shifts-page-header"> {`Hello ${name}, These are your shifts`} </h1> :
+      {AllWeeksShiftsEmpty ? <h1 id="shifts-page-header"> {`${name}, These are your shifts`} </h1> :
        <h1 id="shifts-page-header"> {`Hello ${name}, You have no accepted shifts.`} </h1>}
       </div>
       <div id="thisWeeksShifts-div">
-        {ThisWeeksShiftsEmpty ? <></> : <h1 className="this-shifts-header">This week shifts:</h1>}
         <div id="unordered-list-ofshifts">
-         {filteredShifts?.map((element, index) =>
-         <WorkerShiftsCard element={element} key={index}/>)}
+          <div id="thisweeksheader-div">
+            {ThisWeeksShiftsEmpty ? <></> : <h1 className="this-shifts-header">This week shifts:</h1>}
+          </div>
+          <div id="thisweeksshifts-div">
+            {filteredShifts?.map((element, index) =>
+            <WorkerShiftsCard element={element} key={index}/>)}
+          </div>
         </div>
       </div>
       <div id="otherWeeksShifts-div">
@@ -83,7 +87,11 @@ function Shifts() {
           <WorkerShiftsCard element={element} key={index}/>)}
         </div>
       </div>
-    </>
+
+            <div id="shiftpage-messages-div">
+              <h1>Inbox</h1>
+            </div>
+    </div>
   )
 }
 export default Shifts;

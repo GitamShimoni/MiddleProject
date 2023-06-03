@@ -5,7 +5,7 @@
     justify-content: center;  
 }
 #login-inner{
-   display:flex;
+   /* display:flex;
    justify-content: space-evenly;
    flex-direction: column;
    width: 60%;
@@ -15,33 +15,62 @@
    height: 400px;
    align-items: center;
    border-radius: 15px;
-   color: white;
-
+   color: white; */
+   display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 350px;
+  width: 40vw;
+  height: 40vw;
+  flex-direction: column;
+  gap: 35px;
+  background: linear-gradient(180deg, rgb(186, 207, 255) 0%, rgb(177, 166, 255)100%);
+  box-shadow: 16px 16px 32px #c8c8c8,
+        -16px -16px 32px #fefefe;
+  border-radius: 8px;
+    margin-top: 3vw;
 }
 #login-tittle{
    text-align: center;
+   color: #000;
+    text-transform: uppercase;
+    letter-spacing: 0.1vw;
+    display: block;
+    font-weight: bold;
+    font-size: 2vw;
 }
 #login-btn{
-    width: 10%;
-    width: 150px;
+    width: 13vw;
+    color: rgb(11, 4, 62);
     border-radius: 5px;
-    border: white solid;
-    color: rgb(89, 108, 251) ;
-    background-color:white;
+    background: linear-gradient(180deg, rgb(186, 207, 255) 0%, rgb(177, 166, 255)100%);
     padding: 2px;
-    margin-left: 14px;
+    font-size: 1.5vw;
+    transition: 0.5s ease;
 }
 #login-btn:hover{
-    color: white;
-    background-color: rgb(89, 108, 251) ;
+    color: rgb(255, 255, 255);
+    background: linear-gradient(180deg, rgb(110, 154, 255) 0%, rgb(49, 34, 164)100%);
 }
+
 .login-input{
-    border-radius: 10px;
+    /* border-radius: 10px;
     color: rgb(89, 108, 251);
     width: 150px;
     border: white solid;
     border-radius: 5px;
-    margin-left: 3px;
+    margin-left: 3px; */
+    width: 100%;
+    padding: 10px;
+    outline: none;
+    border: none;
+    color: #000;
+    font-size: 1em;
+    background: transparent;
+    border-left: 2px solid #000;
+    border-bottom: 2px solid #000;
+    transition: 0.1s;
+    border-bottom-left-radius: 8px;
 }
 @media screen and (max-width:450px) {
    #login-btn{
@@ -57,6 +86,9 @@
 .login-div{
     display: flex;
     align-items: center;
+    margin: 2vw;
+    position: relative;
+
 }
 #divofsubmit-btn{
     margin-top: 20px;
@@ -64,3 +96,36 @@
     align-items: center;
     justify-content: center;
 }
+.user{
+    margin-top: 5px;
+  position: absolute;
+  transform: translateX(3vw) translateY(-0.4vw);
+  margin-left: 10px;
+  padding: 10px;
+  pointer-events: none;
+  font-size: 1vw;
+  color: #000;
+  text-transform: uppercase;
+  transition: 0.5s;
+  letter-spacing: 3px;
+  border-radius: 8px;
+}
+.login-div input:focus~span{
+    transform: translateX(9vw) translateY(-1.5vw);
+    font-size: 0.5vw;
+    padding: 5px 10px;
+    background: #000;
+    letter-spacing: 0.2em;
+    color: #fff;
+    border: 2px;
+  }
+.login-div input::placeholder~span{
+    transform: translateX(9vw) translateY(-1.5vw);
+    font-size: 0.5vw;
+    padding: 5px 10px;
+    background: #000;
+    letter-spacing: 0.2em;
+    color: #fff;
+    border: 2px;
+}
+

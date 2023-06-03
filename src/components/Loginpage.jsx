@@ -1,6 +1,4 @@
 import './Loginpage.css';
-// import { BiUserCircle } from "react-icons/bi";
-// import {RiLockPasswordLine} from "react-icons/Ri";
 import {useForm} from 'react-hook-form';
 import data from './workers.json';
 import { useNavigate } from 'react-router-dom';
@@ -15,20 +13,24 @@ function Loginpage() {
           <h1 id='login-tittle'>Log in</h1>
           <form onSubmit={handleSubmit((data)=>{checkUser(data)})}>
           <div> 
-            <h3>Username:</h3>
+            
             <div className="login-div">
-              <span>PersonLogo</span>
-              <input className='login-input' type='text' placeholder='enter your user name...' {...register("username")}></input>
+
+              <input className='login-input' type='text' {...register("username")}></input>
+              <span className="user">Username</span>
+
             </div>
           </div>
           <div>
-            <h3>Password:</h3>
+            
             <div className="login-div">
-              <span>PasswordLogo</span>
-              <input className="login-input" type='password' placeholder='enter your password...' {...register("password")}></input>
+
+              <input className="login-input" type='password' {...register("password")}></input>
+              <span className="user">Password</span>
+
             </div>
           </div>
-          <div id="divofsubmit-btn"><button id="login-btn" type="submit">Log in</button></div>
+          <div id="divofsubmit-btn"><button id="login-btn" type="submit">Sign In</button></div>
           </form>      
         </div>
     </div>

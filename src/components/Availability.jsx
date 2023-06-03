@@ -181,13 +181,29 @@ const Availability = () => {
   function isBefore(date) {
     return (new Date() > date)
   }
+  const todaysdate = new Date();
 
+  // function isCheckDisabled(date, hour) {
+  //   console.log(date);
+  //   const approved = isCheckApproved(date,hour);
+  //   let smallerthan = false;
+  //   const parts = date.split(".");
+  //   const day = parseInt(parts[0], 10);
+  //   const month = parseInt(parts[1], 10);
+  //   const year = parseInt(parts[2], 10);
+  //   const newdate = new Date(year, month-1, day)
 
-  console.log(disableMorning);
+  //   if (todaysdate>newdate) {
+  //     smallerthan = true;
+  //   }
+  //   return (approved || smallerthan);
+  // }
+
+  // isCheckDisabled(dates[0], "morning")
+  // {isCheckApproved(dates[index], "morning")}
 
   const daysOfTheWeek = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
   const CappeddaysOfTheWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-  const todaysdate = new Date();
 
 
 
@@ -203,7 +219,7 @@ const Availability = () => {
       </div>
       <table id="availble-table">
         <tbody>
-          <tr>
+          <tr id="availble-table-header">
             <td className="table-head-tr">Day / Availble</td>
             {dates.map((date, index) =>{
               return (<td key={index} id={HighlightCurrentDay(date) ? "boldHighlightDate" : ""} className="table-head-tr">{`${CappeddaysOfTheWeek[index]}  ${date}`}</td>)
@@ -211,7 +227,7 @@ const Availability = () => {
           </tr>
           <tr>
             <td className="highlited-td-table" >Morning</td>
-            {Formatteddates.map((date, index) => {
+            {dates.map((date, index) => {
               return (<td key={index}>
                 <button disabled={isCheckApproved(dates[index], "morning")} onClick={() => {
                  handleInputClick(dates[index], `${daysOfTheWeek[index]}`, `morning`)}
