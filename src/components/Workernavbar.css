@@ -12,7 +12,6 @@
   );
   overflow: hidden;
   display: flex;
-  width: 100vw;
   height: 13vh;
   align-items: center;
   justify-content: space-evenly;
@@ -68,6 +67,13 @@ img {
   width: 80px;
   height: auto;
 }
+
+#goodhour-h3{
+  font-size: 2.2vw;
+  color: rgb(255, 255, 255);
+  border-radius: 10px;
+}
+
 @media screen and (max-width: 768px) {
   #imgLogo {
     width: 60px;

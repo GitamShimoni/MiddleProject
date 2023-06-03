@@ -1,13 +1,19 @@
 #Phoneslist-container{
-    background-color: rgb(89, 108, 251);
+    background: linear-gradient(
+    50deg,
+    rgba(225, 234, 255, 1) 0%,
+    rgb(89, 108, 251) 100%
+  );
     display: flex;
     justify-content: center;
     font-family: Arial, Helvetica, sans-serif;
+    box-shadow: rgb(175, 243, 255) 0px 7px 29px 4px;
+    padding-top: 2vw;
 }
 #Phoneslist-inner{
     background-color: white;
     width: 60%;
-    margin: 10vw;
+    margin: 3vw;
     border-radius: 10px;
     display: flex;
     justify-content: center;
