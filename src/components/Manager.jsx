@@ -23,7 +23,7 @@ function Manager (){
     const nameofmanager = localStorage.getItem("login");
     console.log(nameofmanager, "nameofmanager");
     return (
-        <>
+        <div>
         <div id="headline-manager-page">
             <div id='manager-logo-h1'>
                 <img id="logo-manager"src="https://cdn-icons-png.flaticon.com/512/5774/5774430.png" alt="pic"></img>
@@ -35,7 +35,7 @@ function Manager (){
         </div>
         <CalenderPage></CalenderPage>
         <Managermessage nameofmanager={nameofmanager}></Managermessage>
-        </>
+        </div>
     )  
 }
 export default Manager;
