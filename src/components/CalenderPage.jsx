@@ -69,23 +69,23 @@ const CalenderPage = () => {
     setData(updateforarrayofcheckbox);
  }, [morningcheck, lunchcheck, eveningcheck])
   return (
-    <>
-      <div id="calender-page-div">
+    <div>
+      <div id="calender-page-div"> 
         <div id="filternavbar-calander">
           <div className="divcheckbox">
-            <input type="checkbox" defaultChecked={true} onClick={() => setMorningcheck(!morningcheck)}></input>
+            <label class="container"><input type="checkbox" defaultChecked={true} onClick={() => setMorningcheck(!morningcheck)}></input><div class="checkmark"></div></label>
             <span>morning</span>
           </div>
           <div className="divcheckbox">
-            <input type="checkbox" defaultChecked={true} onClick={()=> setLunchcheck(!lunchcheck)}></input>
+          <label class="container"><input type="checkbox" defaultChecked={true} onClick={()=> setLunchcheck(!lunchcheck)}></input><div class="checkmark"></div></label>
             <span>lunch</span>
           </div>  
           <div className="divcheckbox">
-            <input type="checkbox" defaultChecked={true} onClick={()=> setEveningcheck(!eveningcheck)}></input>
+          <label class="container"><input type="checkbox" defaultChecked={true} onClick={()=> setEveningcheck(!eveningcheck)}></input><div class="checkmark"></div></label>
             <span>evening</span>
           </div>
-          <input type="text" placeholder="search for worker in the calander..." onChange={(e)=>searchWorkerinCalander(e.target.value)}></input>
-        </div>
+          <input type="text" id="searchworker1" placeholder="search for worker..." onChange={(e)=>searchWorkerinCalander(e.target.value)}></input>
+        </div> 
         <Paper>
           <Scheduler data={data}>
             <ViewState defaultCurrentDate={currentDate} />
@@ -99,7 +99,7 @@ const CalenderPage = () => {
         </Paper>
       </div>
       <div id="container-all-ater-calender">
-        <input type="text" placeholder="search specific worker..." onChange={(e)=>searchWorkerFunction(e.target.value)}></input>
+        <input type="text" id="searchworker2" placeholder="search specific worker..." onChange={(e)=>searchWorkerFunction(e.target.value)}></input>
         <select
           defaultValue={"0"}
           id="sort-select"
@@ -124,7 +124,7 @@ const CalenderPage = () => {
       <br></br>
       <br></br>
       <br></br>
-    </>
+    </div>
   );
   
 
