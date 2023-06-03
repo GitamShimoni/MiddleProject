@@ -15,15 +15,19 @@ function Loginpage() {
           <div> 
             
             <div className="login-div">
+
               <input className='login-input' type='text' {...register("username")}></input>
               <span className="user">Username</span>
+
             </div>
           </div>
           <div>
             
             <div className="login-div">
+
               <input className="login-input" type='password' {...register("password")}></input>
               <span className="user">Password</span>
+
             </div>
           </div>
           <div id="divofsubmit-btn"><button id="login-btn" type="submit">Sign In</button></div>
