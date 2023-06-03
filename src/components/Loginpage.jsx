@@ -1,6 +1,6 @@
 import './Loginpage.css';
-import { BiUserCircle } from "react-icons/bi";
-import {RiLockPasswordLine} from "react-icons/Ri";
+// import { BiUserCircle } from "react-icons/bi";
+// import {RiLockPasswordLine} from "react-icons/Ri";
 import {useForm} from 'react-hook-form';
 import data from './workers.json';
 import { useNavigate } from 'react-router-dom';
@@ -17,14 +17,14 @@ function Loginpage() {
           <div> 
             <h3>Username:</h3>
             <div className="login-div">
-              <span>{<BiUserCircle/>}</span>
+              <span>PersonLogo</span>
               <input className='login-input' type='text' placeholder='enter your user name...' {...register("username")}></input>
             </div>
           </div>
           <div>
             <h3>Password:</h3>
             <div className="login-div">
-              <span>{<RiLockPasswordLine/>}</span>
+              <span>PasswordLogo</span>
               <input className="login-input" type='password' placeholder='enter your password...' {...register("password")}></input>
             </div>
           </div>
