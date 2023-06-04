@@ -227,7 +227,7 @@ const Availability = () => {
               return (<td key={index} id={HighlightCurrentDay(date) ? "boldHighlightDate" : ""} className="table-head-tr">{`${CappeddaysOfTheWeek[index]}  ${date}`}</td>)
             })}
           </tr>
-          <tr>
+          <tr className="and3-table-header">
             <td className="highlited-td-table" >Morning</td>
             {dates.map((date, index) => {
               return (<td key={index}>
@@ -239,7 +239,7 @@ const Availability = () => {
               </td>)
             })}
           </tr>
-          <tr>
+          <tr className="and4-table-header">
             <td className="highlited-td-table">Lunch</td>
             {dates.map((date, index) => {
               return (<td key={index*2}>
@@ -251,7 +251,7 @@ const Availability = () => {
               </td>)
             })}
           </tr>
-          <tr>
+          <tr className="and3-table-header">
             <td className="highlited-td-table">Evening</td>
             {dates.map((date, index) => {
               return (<td key={index*3}>
@@ -267,8 +267,8 @@ const Availability = () => {
       </table>
       <div>
       </div>
-    </div>
     <Message loginname={loginname}></Message>
+    </div>
     </>
   );
 };

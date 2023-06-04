@@ -1,6 +1,5 @@
 import './Manager.css';
 import CalenderPage from './CalenderPage';
-
 import Managermessage from './Managermessage';
 
 

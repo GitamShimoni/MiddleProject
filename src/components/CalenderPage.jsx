@@ -12,9 +12,11 @@ import { appointments } from "./appointments";
 import { useEffect, useState } from "react";
 import "./CalenderPage.css";
 import Divcardofshift from "./Divcardofshift";
+import WorkerInbox from "./WorkerInbox";
 const loginname = localStorage.getItem("login");
 const currentDate = getCurrentFormattedDate();
 const mycolor = "#ff9393"
+
 
 const Appointment = ({ children, style, ...restProps }) => (
   <Appointments.Appointment
@@ -28,9 +30,9 @@ const Appointment = ({ children, style, ...restProps }) => (
     {children}
   </Appointments.Appointment>
 );
-console.log(appointments, "appointments")
+// console.log(appointments, "appointments")
 const shifts = JSON.parse(localStorage.getItem("allshifts"))||[];
-console.log(shifts);
+// console.log(shifts);
 
 let arrayofshifts = JSON.parse(localStorage.getItem("allshifts")) || []; //  this 2 lines
 const acceptedshift = arrayofshifts.filter((obj) => obj.status == "accept"); //  is for make the array of accept shift
@@ -38,6 +40,7 @@ const CalenderPage = () => {
   const [test, setTest] = useState(false);
 
   const [data, setData] = useState([]);
+
   useEffect(() => {
     setData(acceptedshift);
   
@@ -73,15 +76,15 @@ const CalenderPage = () => {
       <div id="calender-page-div"> 
         <div id="filternavbar-calander">
           <div className="divcheckbox">
-            <label class="container"><input type="checkbox" defaultChecked={true} onClick={() => setMorningcheck(!morningcheck)}></input><div class="checkmark"></div></label>
+            <label className="container"><input type="checkbox" defaultChecked={true} onClick={() => setMorningcheck(!morningcheck)}></input><div class="checkmark"></div></label>
             <span>morning</span>
           </div>
           <div className="divcheckbox">
-          <label class="container"><input type="checkbox" defaultChecked={true} onClick={()=> setLunchcheck(!lunchcheck)}></input><div class="checkmark"></div></label>
+          <label className="container"><input type="checkbox" defaultChecked={true} onClick={()=> setLunchcheck(!lunchcheck)}></input><div class="checkmark"></div></label>
             <span>lunch</span>
           </div>  
           <div className="divcheckbox">
-          <label class="container"><input type="checkbox" defaultChecked={true} onClick={()=> setEveningcheck(!eveningcheck)}></input><div class="checkmark"></div></label>
+          <label className="container"><input type="checkbox" defaultChecked={true} onClick={()=> setEveningcheck(!eveningcheck)}></input><div class="checkmark"></div></label>
             <span>evening</span>
           </div>
           <input type="text" id="searchworker1" placeholder="search for worker..." onChange={(e)=>searchWorkerinCalander(e.target.value)}></input>
@@ -124,9 +127,11 @@ const CalenderPage = () => {
       <br></br>
       <br></br>
       <br></br>
+      <WorkerInbox/>
     </div>
   );
   
+
 
   function searchWorkerinCalander(workernameincalander){
     workernameincalander=workernameincalander.toLowerCase();

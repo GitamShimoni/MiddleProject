@@ -13,8 +13,14 @@ function Shifts() {
   const [OtherWeeksShiftsEmpty, setOtherWeeksShiftsEmpty] = useState(true)
   const [AllWeeksShiftsEmpty, setAllWeeksShiftsEmpty] = useState(false)
 
-    let today = new Date();
-    let currentDayOfWeek = today.getDay(); // 0 (Sunday) through 6 (Saturday)
+  let today = new Date();
+  let currentDayOfWeek = today.getDay(); // 0 (Sunday) through 6 (Saturday)
+  let daysSinceSunday = currentDayOfWeek === 0 ? 0 : currentDayOfWeek;
+  let sundayDate = new Date();
+  sundayDate= today.getDate() - daysSinceSunday + 7
+
+
+    
     let saturdayOffset = 6 - currentDayOfWeek; // Number of days until Saturday
     let saturdayDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + saturdayOffset);
     saturdayDate.setHours(24);
@@ -26,12 +32,13 @@ function Shifts() {
     
       return date1 > date2;
     }
+    
     let myfilteredshifts = [];
     myfilteredshifts = shifts.filter((obj) => {
       return obj.title==loginName && obj.status == "accept"
     })
     let filteredshiftThisWeek = myfilteredshifts.filter((obj) => {
-      return !isEarlierDate(obj.startDate, saturdayDate)
+      return (!isEarlierDate(obj.startDate, saturdayDate))
     })
 
     if (filteredshiftThisWeek.length > 0)
@@ -91,7 +98,6 @@ function Shifts() {
         </div>
       </div>}
             <div id="shiftpage-messages-div">
-              <h1>Inbox</h1>
               <div id="inbox-messages-div">
                 <WorkerInbox/>
               </div>

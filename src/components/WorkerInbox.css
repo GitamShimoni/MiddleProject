@@ -1,6 +1,9 @@
-#WorkerInbox-div{
-    width: 60vw;
-    height: 60vw;
+.WorkerInbox-div{
+    /* width: 60vw;
+    height: 60vw; */
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 .Message-div{
     display: flex;
@@ -72,4 +75,13 @@
 }
 .Message-is-unread{
     color: rgb(0, 0, 0);
+    border-radius: 15px;
+    background-color: rgb(149, 149, 254);
+    width: 8vw;
+    height: 3vw;
+}
+.WorkerInbox-Container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

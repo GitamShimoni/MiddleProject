@@ -6,6 +6,9 @@
 }
 .cardofshift-div{
     margin: 5vw;
+    padding: 2vw;
+    box-shadow: 0px 1px 4px 2px #54609d;
+    border-radius: 15px;
 }
 #thisWeeksShifts-div{
     display: flex;
