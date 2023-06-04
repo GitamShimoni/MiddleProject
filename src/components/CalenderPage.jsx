@@ -56,9 +56,13 @@ const CalenderPage = () => {
 
   const [arrayofshiftsformanager, setArrayofshiftsformanager] = useState(JSON.parse(localStorage.getItem("allshifts"))||[]); // this is in usestate to present it in filter
   const [savearrayofshiftsformanager, setsaveArrayofshiftsformanager] = useState(JSON.parse(localStorage.getItem("allshifts"))||[]); // this is for save
+  
+  const [searchworkerincalander, setSerachworkerincalander]=useState();
+  
   useEffect (()=>{
 
     let arraybycheckbox = JSON.parse(localStorage.getItem("allshifts"))||[];
+
     if (morningcheck!=true) {
       arraybycheckbox = arraybycheckbox.filter((element) => element.hour !== "morning");
     }
@@ -68,9 +72,29 @@ const CalenderPage = () => {
     if (eveningcheck!=true) {
       arraybycheckbox = arraybycheckbox.filter((element) => element.hour !== "evening");
     }
-    let updateforarrayofcheckbox = arraybycheckbox.filter((obj) => obj.status == "accept"); 
-    setData(updateforarrayofcheckbox);
- }, [morningcheck, lunchcheck, eveningcheck])
+    let updateforarrayofcheckbox = arraybycheckbox.filter((obj) => obj.status == "accept");
+    
+    if(searchworkerincalander==null){
+      setData(updateforarrayofcheckbox);
+    }
+    else{
+      let savename = searchworkerincalander.toLowerCase();
+      setData(arraybycheckbox.filter((element) => element.title.toLowerCase().includes(savename )));
+    }
+
+
+    
+ }, [morningcheck, lunchcheck, eveningcheck, searchworkerincalander])
+
+//  function searchWorkerinCalander(workernameincalander){
+//   workernameincalander=workernameincalander.toLowerCase();
+//   console.log(workernameincalander);
+//   setData(savearrayofshiftsformanager.filter((element) => element.title.toLowerCase().includes(workernameincalander )));
+//   setEveningcheck(eveningcheck)
+//   setTest(!test); 
+// }
+
+ 
   return (
     <div>
       <div id="calender-page-div"> 
@@ -87,7 +111,7 @@ const CalenderPage = () => {
           <label className="container"><input type="checkbox" defaultChecked={true} onClick={()=> setEveningcheck(!eveningcheck)}></input><div class="checkmark"></div></label>
             <span>evening</span>
           </div>
-          <input type="text" id="searchworker1" placeholder="search for worker..." onChange={(e)=>searchWorkerinCalander(e.target.value)}></input>
+          <input type="text" id="searchworker1" placeholder="search for worker..." onChange={(e)=>setSerachworkerincalander(e.target.value)}></input>
         </div> 
         <Paper>
           <Scheduler data={data}>
@@ -131,15 +155,6 @@ const CalenderPage = () => {
     </div>
   );
   
-
-
-  function searchWorkerinCalander(workernameincalander){
-    workernameincalander=workernameincalander.toLowerCase();
-    console.log(workernameincalander);
-    setData(savearrayofshiftsformanager.filter((element) => element.title.toLowerCase().includes(workernameincalander )));
-    setTest(!test); 
-  }
-
   function searchWorkerFunction (workername){
     console.log(workername);
     workername=workername.toLowerCase()
