@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import './Message.css'
 function Message (keyofuser){
     const [messages, setMessages] = useState(JSON.parse(localStorage.getItem("Messages")) || []);
     const [newmessage, Setnewmessage]=useState("");
@@ -9,7 +10,7 @@ function Message (keyofuser){
             isSendmanAdmin: false,
             date: today1,
             content: newmessage1,
-            to: "manager",
+            to: "OfekGitam",
             read: false
         }
         console.log(blockofnewmessage);
@@ -20,10 +21,10 @@ function Message (keyofuser){
     }, [messages])
 
     return(
-        <div>
-           <h1>Message box</h1>
-           <textarea id="textplace" onChange={(e)=>Setnewmessage(e.target.value)} placeholder="send a message to the admin..."></textarea>;
-           <button onClick={()=> sendMessage(newmessage)}>send the message</button>
+        <div id="worker-write-message-box">
+           <h1 id="worker-write-header">Message box</h1>
+           <textarea id="textplace" onChange={(e)=>Setnewmessage(e.target.value)} placeholder="Send a message to the manager..."></textarea>;
+           <button id="worker-write-button" onClick={()=> sendMessage(newmessage)}>send the message</button>
         </div>
     )   
 }

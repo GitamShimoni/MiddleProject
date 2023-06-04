@@ -1,7 +1,6 @@
 #availble-main-div {
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  width: 100vw;
-  background-color: white;
+  background: linear-gradient(180deg, rgb(204, 217, 249) 0%, rgb(116, 113, 138) 100%);
   box-shadow: rgb(0, 0, 0) 0px 0px 5px 1px;
   display: flex;
   align-items: center;
@@ -19,8 +18,8 @@
   align-items: center;
   justify-content: center;
   font-size: 1.5vw;
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
+  /* border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px; */
   box-shadow: rgb(0, 0, 0) 0px 0px 5px 1px;
 }
 .highlited-td-table{
@@ -104,7 +103,17 @@ td {
   background: linear-gradient(180deg, rgba(4,51,158,1) 0%, rgba(7,0,64,1) 100%);
   color: white;
 }
+td {
+	background-color: rgba(255,255,255,0.2);
+	color: #000000;
+}
+.and3-table-header{
+  background: linear-gradient(50deg, rgb(198, 215, 255) 0%, rgb(176, 166, 255) 100%);
+}
+.and4-table-header{
+  background: linear-gradient(150deg, rgb(113, 150, 244) 0%, rgb(141, 137, 172) 100%);
 
+}
 @media only screen and (max-width: 600px) {
   #availble-table{
     width: 95vw;
