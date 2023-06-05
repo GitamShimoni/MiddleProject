@@ -1,8 +1,12 @@
 import './Manager.css';
 import CalenderPage from './CalenderPage';
 import Managermessage from './Managermessage';
+import logoutpic from "../logoutpic.png";
+import { Link } from 'react-router-dom';
+import 'animate.css';
 
-
+    if (localStorage.getItem("login")==null)
+        localStorage.setItem("login", "DemiName")
     let loginname = localStorage.getItem("login")
     const firstName = loginname.split(/(?=[A-Z])/)[0];
     const date = new Date();
@@ -20,16 +24,21 @@ import Managermessage from './Managermessage';
 
 function Manager (){
     const nameofmanager = localStorage.getItem("login");
-    console.log(nameofmanager, "nameofmanager");
+    // console.log(nameofmanager, "nameofmanager");
     return (
         <div>
         <div id="headline-manager-page">
             <div id='manager-logo-h1'>
-                <img id="logo-manager"src="https://cdn-icons-png.flaticon.com/512/5774/5774430.png" alt="pic"></img>
-                <h1 id="headline-tittle">Manager</h1>
+                <img className='animate__animated animate__rollIn' id="logo-manager"src="https://cdn-icons-png.flaticon.com/512/5774/5774430.png" alt="manager-logo"></img>
+                <h1 id="headline-tittle" className='animate__animated animate__fadeInDown'>Manager</h1>
             </div>
             <div>
-            <h3 id="goodhour-h3">{`Good ${stringhour}, ${firstName}`}</h3>
+            <h3 className='animate__animated animate__fadeInUp' id="goodhour-h3">{`Good ${stringhour}, ${firstName}`}</h3>
+            </div>
+            <div id='logout-button-container'>
+                <Link to={"../../"}>
+                    <img id='logout-button-pic' src={logoutpic} alt="logout-icon" />
+                </Link>
             </div>
         </div>
         <CalenderPage></CalenderPage>

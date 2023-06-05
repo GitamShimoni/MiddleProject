@@ -1,6 +1,6 @@
 #availble-main-div {
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  background: linear-gradient(180deg, rgb(204, 217, 249) 0%, rgb(116, 113, 138) 100%);
+  background: linear-gradient(150deg, rgb(204, 217, 249) 0%, rgb(141, 127, 245) 100%);
   box-shadow: rgb(0, 0, 0) 0px 0px 5px 1px;
   display: flex;
   align-items: center;
@@ -9,6 +9,21 @@
   margin: auto;
   padding-top: 1.5vw;
   padding-bottom: 4vw;
+  z-index: 0;
+  position: relative;
+  overflow: hidden;
+}
+#availble-main-div:before{
+  content: "";
+  background: linear-gradient(111deg, rgb(135, 185, 255) 0%, rgb(59, 62, 255) 100%);
+  width: 145vw;
+  height: 55vw;
+  bottom: 20vw;
+  top: 72vh;
+  left: -25vw;
+  transform: rotateZ(30deg);
+  z-index: -1;
+  position: absolute;
 }
 #availble-table {
   font-family: sans-serif;

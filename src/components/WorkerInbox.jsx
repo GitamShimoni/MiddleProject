@@ -2,6 +2,7 @@ import "./WorkerInbox.css";
 import { useState, useEffect } from "react";
 import ClosedMessage from "./ClosedMessage";
 import ReadButton from "./ReadButton";
+import 'animate.css';
 
 const WorkerInbox = ({ mykey }) => {
   const [messages, setMessages] = useState(
@@ -35,10 +36,10 @@ const WorkerInbox = ({ mykey }) => {
   //   }
   useEffect(() => {
     // resetCards();
-    console.log(messages);
+    // console.log(messages);
     const myMessagesSorted = myMessages.sort(sortMessages);
     setSortedMessages(myMessagesSorted);
-    console.log(openCards);
+    // console.log(openCards);
     // localStorage.setItem("Messages", JSON.stringify(sortedMessages))
   }, [messages]);
 
@@ -67,8 +68,8 @@ const WorkerInbox = ({ mykey }) => {
     return str.slice(0, 10) + "...";
   }
   function handleDeleteButton(element, i) {
-    console.log(element.date, "this is the element date");
-    console.log(element.to);
+    // console.log(element.date, "this is the element date");
+    // console.log(element.to);
     const filteredMessages = sortedMessages.filter((object, index) => {
       return index !== i;
     });
@@ -77,7 +78,8 @@ const WorkerInbox = ({ mykey }) => {
   }
   return (
     <div className="WorkerInbox-div">
-        {sortedMessages.length>0 ? <h1>{sortedMessages.length > 1 ? `Inbox: ${sortedMessages.length} Messages` : `Inbox: ${sortedMessages.length} Message`}</h1> : <h1>You have no messages</h1>}
+        {sortedMessages.length>0 ? <h1 className="animate__animated animate__rollIn">{sortedMessages.length > 1 ? `Inbox: ${sortedMessages.length} Messages` : `Inbox: ${sortedMessages.length} Message`}</h1> :
+         <h1 className="animate__animated animate__rollIn">You Have No Messages</h1>}
         
       {sortedMessages.map((element, index) => {
         return (

@@ -4,7 +4,6 @@ import Workercard from "./Workercard"
 function Phoneslist (){
    let arrayofworkers = data.workers;
    arrayofworkers.sort((a, b) => (b.Admin ? 1 : -1) - (a.Admin ? 1 : -1));
-   console.log(arrayofworkers);
    return(
     <div id="Phoneslist-container">
       <div id="Phoneslist-inner">

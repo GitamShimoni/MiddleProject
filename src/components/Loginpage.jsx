@@ -1,11 +1,13 @@
 import './Loginpage.css';
 import {useForm} from 'react-hook-form';
+import {useState} from 'react';
 import data from './workers.json';
 import { useNavigate } from 'react-router-dom';
+import PaymentForm from "./PaymentForm";
 function Loginpage() {
     const navigate = useNavigate();
+    const [clicked, setClicked] = useState(false);
     let arrayofworkers = data.workers;
-    console.log(arrayofworkers);
     const {register, handleSubmit}=useForm();
     return(
     <div id="login-container">
@@ -31,14 +33,18 @@ function Loginpage() {
             </div>
           </div>
           <div id="divofsubmit-btn"><button id="login-btn" type="submit">Sign In</button></div>
-          </form>      
+          </form>
+          <div>
+            <button onClick={() => setClicked(!clicked)} id='buymembership-button'>Buy Membership</button>
+            {clicked &&
+            <div id='credit-card-container'>
+              <PaymentForm/>
+            </div> }
+          </div>
         </div>
     </div>
     )
   function checkUser(objofinput){
-    console.log("im here")
-    console.log(objofinput.username);
-    console.log(objofinput.password);
     let admincheck = null
     let check=false;
     let namesaved = null;
@@ -49,17 +55,16 @@ function Loginpage() {
         admincheck = arrayofworkers[i].Admin;
        }
     }
-    console.log(check);
-    console.log(admincheck);
+
     if (check==true){
         if(admincheck==true){
           //lead to admin page
-          console.log("go to admin")
+          
           navigate('Manager');
           localStorage.setItem("login", namesaved)
         }else{
           //lead to worker page
-          console.log("go to worker")
+         
           navigate('Worker');
           localStorage.setItem("login", namesaved)
         }

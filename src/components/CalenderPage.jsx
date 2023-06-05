@@ -15,7 +15,7 @@ import Divcardofshift from "./Divcardofshift";
 import WorkerInbox from "./WorkerInbox";
 const loginname = localStorage.getItem("login");
 const currentDate = getCurrentFormattedDate();
-const mycolor = "#ff9393"
+const mycolor = "#e0c802";
 
 
 const Appointment = ({ children, style, ...restProps }) => (
@@ -46,7 +46,7 @@ const CalenderPage = () => {
   
   }, [appointments]);
 
-  console.log(data, "data");
+  // console.log(data, "data");
 
   //can write from here
 
@@ -99,6 +99,7 @@ const CalenderPage = () => {
     <div>
       <div id="calender-page-div"> 
         <div id="filternavbar-calander">
+          <div id="div-checkboxes">
           <div className="divcheckbox">
             <label className="container"><input type="checkbox" defaultChecked={true} onClick={() => setMorningcheck(!morningcheck)}></input><div class="checkmark"></div></label>
             <span>morning</span>
@@ -110,6 +111,7 @@ const CalenderPage = () => {
           <div className="divcheckbox">
           <label className="container"><input type="checkbox" defaultChecked={true} onClick={()=> setEveningcheck(!eveningcheck)}></input><div class="checkmark"></div></label>
             <span>evening</span>
+          </div>
           </div>
           <input type="text" id="searchworker1" placeholder="search for worker..." onChange={(e)=>setSerachworkerincalander(e.target.value)}></input>
         </div> 
@@ -126,18 +128,22 @@ const CalenderPage = () => {
         </Paper>
       </div>
       <div id="container-all-ater-calender">
-        <input type="text" id="searchworker2" placeholder="search specific worker..." onChange={(e)=>searchWorkerFunction(e.target.value)}></input>
+        <div id="calender-worker-filter-div">
+        <h3 id="sort-calender-by-header">Sort By:</h3>
         <select
           defaultValue={"0"}
           id="sort-select"
           onChange={(e) => sortfunctionofshowingshifts(e.target.value)}
-        >
-          <option value="0">first sended shifts</option>
-          <option value="1">last sended shifts</option>
-          <option value="2">worker name</option>
-          <option value="3">by dates from erlier</option>
-          <option value="4">by dates from latest</option>
+          >
+          <option value="0">First Sended</option>
+          <option value="1">Last Sended</option>
+          <option value="2">Worker Name</option>
+          <option value="3">Dates: Earliest</option>
+          <option value="4">Dates: Latest</option>
         </select>
+        <input type="text" id="searchworker2" placeholder="Search By Worker Name" onChange={(e)=>searchWorkerFunction(e.target.value)}></input>
+          </div>
+          <div id="display-shifts-container">
         {arrayofshiftsformanager.map((element, index) => (
           <Divcardofshift
             element={element}
@@ -146,17 +152,14 @@ const CalenderPage = () => {
             setshiftsincalander={setData}
           />
         ))}
+        </div>
       </div>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
       <WorkerInbox/>
     </div>
   );
   
   function searchWorkerFunction (workername){
-    console.log(workername);
+    // console.log(workername);
     workername=workername.toLowerCase()
     setArrayofshiftsformanager(savearrayofshiftsformanager.filter((element) => element.title.toLowerCase().includes(workername)));
     setTest(!test); 
@@ -164,36 +167,36 @@ const CalenderPage = () => {
 
   function sortfunctionofshowingshifts(value1) {
     if (value1 == "0") {
-      console.log(0);
+      // console.log(0);
       setArrayofshiftsformanager(savearrayofshiftsformanager);
-      console.log(savearrayofshiftsformanager)
+      // console.log(savearrayofshiftsformanager)
       setTest(!test); 
     }
     if (value1 == "1") {
-      console.log(1);
+      // console.log(1);
       const update1= arrayofshiftsformanager.slice().reverse();
-      console.log(update1);
+      // console.log(update1);
       setArrayofshiftsformanager(update1);
       setTest(!test);
     }
     if (value1 == "2") {
-      console.log(2);
+      // console.log(2);
       const update2 = arrayofshiftsformanager.sort((a, b) => a.title.localeCompare(b.title));
-      console.log(update2)
+      // console.log(update2)
       setArrayofshiftsformanager(update2);
       setTest(!test);
     }
     if (value1 == "3") {
-      console.log(3);
+      // console.log(3);
       const update3=arrayofshiftsformanager.sort((a, b) => new Date(a.startDate) - new Date(b.startDate));
-      console.log(update3)
+      // console.log(update3)
       setArrayofshiftsformanager(update3);
       setTest(!test);
     }
     if (value1 == "4") {
-      console.log(4);
+      // console.log(4);
       const update4=arrayofshiftsformanager.sort((a, b) => new Date(b.startDate) - new Date(a.startDate));
-      console.log(update4)
+      // console.log(update4)
       setArrayofshiftsformanager(update4);
       setTest(!test);
     }
@@ -203,11 +206,11 @@ const CalenderPage = () => {
 export default CalenderPage;
 
 function getCurrentFormattedDate() {
-  var currentDate = new Date();
-  var year = currentDate.getFullYear();
-  var month = (currentDate.getMonth() + 1).toString().padStart(2, "0");
-  var day = currentDate.getDate().toString().padStart(2, "0");
+  let currentDate = new Date();
+  let year = currentDate.getFullYear();
+  let month = (currentDate.getMonth() + 1).toString().padStart(2, "0");
+  let day = currentDate.getDate().toString().padStart(2, "0");
 
-  var formattedDate = year + "-" + month + "-" + day;
+  let formattedDate = year + "-" + month + "-" + day;
   return formattedDate;
 }

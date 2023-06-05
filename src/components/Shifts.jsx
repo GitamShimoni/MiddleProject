@@ -1,8 +1,11 @@
-import {useState, useEffect} from "react";
+import {useState, useEffect, useContext} from "react";
+import { Context } from "../components/context";
 import WorkerShiftsCard from "./WorkerShiftsCard";
 import './Shifts.css';
 import WorkerInbox from "./WorkerInbox";
+import 'animate.css';
 function Shifts() {
+  const{demiData} = useContext(Context);
   const [shifts] = useState(JSON.parse(localStorage.getItem("allshifts")) || []);
   const [filteredShifts, setFilteredShifts] = useState();
   const [nextWeekfilteredShifts, setNextWeekFilteredShifts] = useState();
@@ -12,6 +15,8 @@ function Shifts() {
   const [ThisWeeksShiftsEmpty, setThisWeeksShiftsEmpty] = useState(true)
   const [OtherWeeksShiftsEmpty, setOtherWeeksShiftsEmpty] = useState(true)
   const [AllWeeksShiftsEmpty, setAllWeeksShiftsEmpty] = useState(false)
+
+  console.log(demiData);
 
   let today = new Date();
   let currentDayOfWeek = today.getDay(); // 0 (Sunday) through 6 (Saturday)
@@ -50,7 +55,6 @@ function Shifts() {
     });
     // filteredshiftThisWeek = filteredshiftThisWeek.sort((a,b) => { a.endDate - b.endDate})
     setFilteredShifts(filteredshiftThisWeek)
-    console.log(filteredshiftThisWeek);
     
     let NextWeekfilteredshifts = myfilteredshifts.filter((obj) => {
       return isEarlierDate(obj.startDate, saturdayDate)
@@ -66,14 +70,13 @@ function Shifts() {
     if (!(NextWeekfilteredshifts.length + filteredshiftThisWeek.length === 0))
       setAllWeeksShiftsEmpty(true);
     setNextWeekFilteredShifts(NextWeekfilteredshifts)
-    console.log(NextWeekfilteredshifts);
   }, [shifts, loginName])
 
   return(
     <div id="shifts-page-container">
       <div>
-      {AllWeeksShiftsEmpty ? <h1 id="shifts-page-header"> {`${name}, These are your shifts`} </h1> :
-       <h1 id="shifts-page-header"> {`Hello ${name}, You have no accepted shifts.`} </h1>}
+      {AllWeeksShiftsEmpty ? <h1 className="animate_animated animate__rollIn" id="shifts-page-header"> {`${name}, These are your shifts`} </h1> :
+       <h1 className="animate__animated animate__fadeInDown" id="shifts-page-header"> {`Hello ${name}, You have no accepted shifts.`} </h1>}
       </div>
       {ThisWeeksShiftsEmpty ? <></> :
       <div id="thisWeeksShifts-div">
