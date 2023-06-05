@@ -13,7 +13,8 @@ function Message (keyofuser){
             to: "OfekGitam",
             read: false
         }
-        console.log(blockofnewmessage);
+        // console.log(blockofnewmessage);
+        alert("Message Sent")
         setMessages([...messages, blockofnewmessage]);
     }
     useEffect(() =>{

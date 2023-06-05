@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Cards from 'react-credit-cards-2';
 import 'react-credit-cards-2/dist/es/styles-compiled.css';
 import './Loginpage.css';
+import 'animate.css';
 
 const PaymentForm = () => {
   const [state, setState] = useState({
@@ -39,7 +40,7 @@ const PaymentForm = () => {
         name={state.name}
         focused={state.focus}
       />
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className='animate__animated animate__backInDown'>
         <input className='submit-card-input'
           type="tel"
           name="number"

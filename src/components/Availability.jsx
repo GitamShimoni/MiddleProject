@@ -2,6 +2,7 @@ import "./availability.css";
 import { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
 import Message from "./Message";
+import 'animate.css';
 
 
 const Availability = () => {
@@ -219,7 +220,7 @@ const Availability = () => {
           →
         </Button>
       </div>
-      <table id="availble-table">
+      <table id="availble-table" className="animate__animated animate__fadeInUp">
         <tbody>
           <tr id="availble-table-header">
             <td className="table-head-tr">Day / Availble</td>
