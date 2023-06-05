@@ -100,7 +100,7 @@ function Divcardofshift({element, key, shiftsincalander, setshiftsincalander}) {
         //check if newshift that u want to put in is already there
         
         if(shiftsincalander.some(element => element.id == newShiftinCalender.id)){
-            alert("shift is already accepted");
+            alert("The Shift Is Already Accepted");
         }else{
             
         setshiftsincalander([...shiftsincalander, newShiftinCalender]);
@@ -136,7 +136,7 @@ function Divcardofshift({element, key, shiftsincalander, setshiftsincalander}) {
               }
               localStorage.setItem("allshifts", JSON.stringify(existingArraybeforedeletelocal));
         }else{
-            alert("shift is not accept yet and beacuse of that cant be delete")
+            alert("Shift Cannot Be Deleted, Accept It First.")
         }
     }
     

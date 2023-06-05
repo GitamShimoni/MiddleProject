@@ -4,6 +4,7 @@ import {useState} from 'react';
 import data from './workers.json';
 import { useNavigate } from 'react-router-dom';
 import PaymentForm from "./PaymentForm";
+import 'animate.css';
 function Loginpage() {
     const navigate = useNavigate();
     const [clicked, setClicked] = useState(false);
@@ -37,7 +38,7 @@ function Loginpage() {
           <div>
             <button onClick={() => setClicked(!clicked)} id='buymembership-button'>Buy Membership</button>
             {clicked &&
-            <div id='credit-card-container'>
+            <div id='credit-card-container' className='animate__animated animate__backInDown'>
               <PaymentForm/>
             </div> }
           </div>
