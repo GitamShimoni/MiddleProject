@@ -1,5 +1,7 @@
 import { Link, Outlet } from "react-router-dom";
 import "./Workernavbar.css";
+import logoutpic from "../logoutpic.png";
+import 'animate.css';
 function Workernavbar() {
   let loginname = localStorage.getItem("login")
   const firstName = loginname.split(/(?=[A-Z])/)[0];
@@ -20,7 +22,7 @@ function Workernavbar() {
     <div>
       <div id="navbardiv">
         <div id="divoflogo">
-          <img
+          <img className="animate__animated animate__fadeInLeft"
             id="imgLogo"
             src="https://cdn-icons-png.flaticon.com/512/5774/5774430.png"
             alt="pic"
@@ -38,6 +40,11 @@ function Workernavbar() {
         <Link to={"phonelist"}>
           <div className="object-nav">Phones list</div>
         </Link>
+        <div id='workerlogout-button-container'>
+                <Link to={"../../"}>
+                    <img id='workerlogout-button-pic' src={logoutpic} alt="logout-icon" />
+                </Link>
+            </div>
       </div>
       <Outlet />
     </div>

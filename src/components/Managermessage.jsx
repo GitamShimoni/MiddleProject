@@ -1,5 +1,6 @@
 import { useState, useEffect} from "react";
 import data from './workers.json';
+import './Managermessage.css'
 function Managermessage ({nameofmanager}){
 
     const [demilistener, setDemilistener]=useState(0);
@@ -17,9 +18,9 @@ function Managermessage ({nameofmanager}){
     const [updatefullnamearray, setUpdatefullnamearray]=useState(fullnamearray);
 
     function getnameintosendarray (newname){
-        console.log(newname, "element");
+        // console.log(newname, "element");
         let check = workernamemarkarray.some((item) => item === newname);
-        console.log(check, "check");
+        // console.log(check, "check");
         if (check==false){
             setWorkernamemarkarray([...workernamemarkarray, newname]);
         }else{
@@ -35,7 +36,7 @@ function Managermessage ({nameofmanager}){
 
     function sendMessage (newmessage1, workernamemarkarray){
         let today1 = new Date;
-        console.log(newmessage1, workernamemarkarray, "gmetkjbnr")
+        // console.log(newmessage1, workernamemarkarray, "gmetkjbnr")
         let helpm = []
         for (let i = 0; i<workernamemarkarray.length; i++){
             const blockofnewmessage = {
@@ -47,7 +48,7 @@ function Managermessage ({nameofmanager}){
                 read: false
             }
             helpm = [...helpm, blockofnewmessage]
-            console.log(blockofnewmessage, "blabla");
+            // console.log(blockofnewmessage, "blabla");
         }      
         setMessages([...helpm]);  
         setWorkernamemarkarray([]);
@@ -64,10 +65,10 @@ function Managermessage ({nameofmanager}){
     useEffect(() =>{
         if (demilistener!=0){
             let lastmessages = JSON.parse(localStorage.getItem("Messages")) || [];
-            console.log(lastmessages, "last")
-            console.log(messages, "messages")
+            // console.log(lastmessages, "last")
+            // console.log(messages, "messages")
             let updateallmessages = [...messages, ...lastmessages];
-            console.log(updateallmessages, "sumofall");
+            // console.log(updateallmessages, "sumofall");
             localStorage.setItem("Messages", JSON.stringify(updateallmessages));
         }
     }, [demilistener])
@@ -76,23 +77,27 @@ function Managermessage ({nameofmanager}){
         setWorkerinsearch(workername1);
         workername1=workername1.toLowerCase();
         setUpdatefullnamearray(fullnamearray.filter((element) => element.toLowerCase().includes(workername1)));
-        console.log(updatefullnamearray);
+        // console.log(updatefullnamearray);
         
     }
     return(
-        <div>
-           <h1>Message box</h1>
-           <textarea id="textplace" onChange={(e)=>Setnewmessage(e.target.value)} placeholder="send a message to the admin..."></textarea>;
-           <input type="text" placeholder="search for worker in the calander..." onChange={(e)=>searchWorkerformessage(e.target.value)}></input>
-           {updatefullnamearray?.map((element) => {
+        <div id="manager-write-message-container">
+            <div id="message-box-andsend-button">
+                <h1 id="send-amessage-header">Send a New Message</h1>
+                <button className="sendButton" onClick={()=> sendMessage(newmessage, workernamemarkarray )}>Send</button>
+            </div>
+           <textarea id="textplace" onChange={(e)=>Setnewmessage(e.target.value)} placeholder="Send A Message To A Worker..."></textarea>
+           <input className="searchbar-worker-text" type="text" placeholder="Search For A Worker" onChange={(e)=>searchWorkerformessage(e.target.value)}></input>
+           <div id="manager-write-workers-container">
+           {updatefullnamearray?.map((element, index) => {
             return(
-                <div>
-               <div>{element}</div>
-               <input  type="checkbox" name="button1" onClick={()=>getnameintosendarray(element)} ></input>
+                <div className="worker-checkbox-container" key={index*12}>
+               <input className="worker-checkbox-input-checkbox" type="checkbox" name="button1" onClick={()=>getnameintosendarray(element)} ></input>
+               <h3 className="worker-checkbox-header">{element}</h3>
                </div>
             )           
            })}
-           <button onClick={()=> sendMessage(newmessage, workernamemarkarray )}>send the message</button>
+           </div>
         </div>
     )
 }

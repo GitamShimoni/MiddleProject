@@ -128,4 +128,37 @@
     color: #fff;
     border: 2px;
 }
-
+#credit-card-container{
+    position: absolute;
+    top: 45vw;
+    left: 24vw;
+    padding-bottom: 5vw;
+}
+#buymembership-button{
+    border-radius: 15px;
+    border: 0;
+    background-color: antiquewhite;
+    padding: 1vw;
+    cursor: pointer;
+}
+.submit-card-input{
+    border: 1px solid black;
+    margin: 1vw;
+    padding: 2vw;
+    border-radius: 15px;
+    background: linear-gradient(180deg, rgb(186, 207, 255) 0%, rgb(177, 166, 255)100%);
+}
+.submit-card-button{
+    border: 1px solid black;
+    margin: 1vw;
+    padding: 1vw;
+    border-radius: 15px;
+    background: linear-gradient(180deg, rgb(203, 223, 22) 0%, rgb(227, 227, 5)100%);
+    margin-left: 8vw;
+    cursor: pointer;
+}
+.creditcard-styling-container{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}

@@ -23,7 +23,7 @@ function Message (keyofuser){
     return(
         <div id="worker-write-message-box">
            <h1 id="worker-write-header">Message box</h1>
-           <textarea id="textplace" onChange={(e)=>Setnewmessage(e.target.value)} placeholder="Send a message to the manager..."></textarea>;
+           <textarea id="textplace" onChange={(e)=>Setnewmessage(e.target.value)} placeholder="Type Your Message To The Boss..."></textarea>
            <button id="worker-write-button" onClick={()=> sendMessage(newmessage)}>send the message</button>
         </div>
     )   

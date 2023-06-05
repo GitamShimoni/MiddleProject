@@ -4,7 +4,6 @@
     rgba(225, 234, 255, 1) 0%,
     rgb(89, 108, 251) 100%
   );
-    width: 100vw;
     height: 13vh;
     display: flex;
     justify-content: space-evenly;
@@ -23,6 +22,13 @@
 #manager-logo-h1{
     display: flex;
     align-items: center;
+}
+#logout-button-pic{
+    width: 2.5vw;
+}
+#logout-button-container{
+    position: absolute;
+    right: 3vw;
 }
 @media screen and (max-width: 768px) {
     #headline-tittle{

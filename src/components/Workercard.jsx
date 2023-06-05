@@ -2,8 +2,7 @@ import './Workercard.css';
 import { AiTwotonePhone } from "react-icons/ai";
 
 function Workercard ({data}){
-    console.log(data.FullName)
-    console.log(data.Phone)
+
    return(
       <div id='workercard-div'>
     <div className={`workercard-container ${data.Admin ? "workercard-admin" : ""}`}>

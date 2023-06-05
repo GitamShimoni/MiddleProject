@@ -92,3 +92,10 @@ img {
     display: none;
   }
 }
+#workerlogout-button-pic{
+  width: 2vw;
+}
+#workerlogout-button-container{
+  position: absolute;
+  right: 2vw;
+}
