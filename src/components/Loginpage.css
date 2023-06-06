@@ -170,6 +170,10 @@
     align-items: center;
     flex-direction: row;
 }
+.submit-button-login-div{
+    display: flex;
+    justify-content: center;
+}
 @media screen and (max-width:620px) {
     #login-btn{
      width: 20vw;
@@ -193,5 +197,8 @@
     }
     #buymembership-button{
         padding: 3vw;
+    }
+    .creditcard-styling-container{
+        flex-direction: column;
     }
  }

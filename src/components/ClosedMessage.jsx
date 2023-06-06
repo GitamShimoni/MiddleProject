@@ -47,13 +47,12 @@ const ClosedMessage = ({element, index, truncateString, formatDate}) => {
     
   return (
     <div className='MessageBox'>
-
     <button className='MessageButton' key={index*8} onClick={() => handleClick()}>
         {isOpen ? 
         <div className='OpenMessage-div'>
         <div className='OpenMessage-header-div'>
-            <h1>{`${element.sendman.replace(/([A-Z])/g, ' $1')}`}</h1>
-            <h2>{formatDate(element.date)}</h2>
+            <h1 className='worker-inbox-name'>{`${element.sendman.replace(/([A-Z])/g, ' $1')}`}</h1>
+            <h2 className='worker-inbox-date'>{formatDate(element.date)}</h2>
         </div>
         <div className='OpenMessage-content-div'>
             <p className='OpenMessage-paragraph'>{`${element.content}`}</p>
@@ -61,9 +60,9 @@ const ClosedMessage = ({element, index, truncateString, formatDate}) => {
     </div>
         :
         <div className='CloseMessage-div'>
-        <h1>{`${element.sendman.replace(/([A-Z])/g, ' $1')}`}</h1>
-        <h3>{`${truncateString(element.content)}`}</h3>
-        <h2>{formatDate(element.date)}</h2>
+        <h1 className='worker-inbox-name'>{`${element.sendman.replace(/([A-Z])/g, ' $1')}`}</h1>
+        <h3 className='worker-inbox-paragraph'>{`${truncateString(element.content)}`}</h3>
+        <h2 className='worker-inbox-date'>{formatDate(element.date)}</h2>
     </div>
     }
             

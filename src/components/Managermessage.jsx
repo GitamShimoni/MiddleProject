@@ -48,6 +48,7 @@ function Managermessage ({nameofmanager}){
                 read: false
             }
             helpm = [...helpm, blockofnewmessage]
+            
             // console.log(blockofnewmessage, "blabla");
         }      
         setMessages([...helpm]);  
@@ -59,7 +60,7 @@ function Managermessage ({nameofmanager}){
         checkbox.checked = false;
     });
        
-
+        alert("Message Has Been Sent");
     }
 
     useEffect(() =>{
