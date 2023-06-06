@@ -68,3 +68,28 @@
 .searchbar-worker-text:hover{
     box-shadow: 0px 1px 10px 2px #199434;
 }
+@media screen and (max-width: 768px) {
+    #send-amessage-header{
+        font-size: 5vw;
+        text-align: center;
+    }
+    .sendButton{
+        font-size: 5vw;
+    }
+    .searchbar-worker-text{
+        font-size: 3.5vw;
+        margin-bottom: 4vw;
+    }
+    .worker-checkbox-header{
+        font-size: 4vw;
+    }
+    .worker-checkbox-input-checkbox{
+        width: 5.5vw;
+    }
+    .worker-checkbox-container{
+        padding: 2.5vw;
+    }
+    .manager-write-workers-container{
+        
+    }
+}

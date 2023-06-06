@@ -4,11 +4,10 @@ import Managermessage from './Managermessage';
 import logoutpic from "../logoutpic.png";
 import { Link } from 'react-router-dom';
 import 'animate.css';
+import {useEffect} from 'react';
 
-    if (localStorage.getItem("login")==null)
-        localStorage.setItem("login", "DemiName")
-    let loginname = localStorage.getItem("login")
-    const firstName = loginname.split(/(?=[A-Z])/)[0];
+
+    
     const date = new Date();
     const hour = date.getHours();
     let stringhour;
@@ -23,6 +22,8 @@ import 'animate.css';
     }
 
 function Manager (){
+    let loginname = localStorage.getItem("login")
+    const firstName = loginname.split(/(?=[A-Z])/)[0];
     const nameofmanager = localStorage.getItem("login");
     // console.log(nameofmanager, "nameofmanager");
     return (
@@ -32,7 +33,7 @@ function Manager (){
                 <img className='animate__animated animate__rollIn' id="logo-manager"src="https://cdn-icons-png.flaticon.com/512/5774/5774430.png" alt="manager-logo"></img>
                 <h1 id="headline-tittle" className='animate__animated animate__fadeInDown'>Manager</h1>
             </div>
-            <div>
+            <div id='h3-header-manager-nav'>
             <h3 className='animate__animated animate__fadeInUp' id="goodhour-h3">{`Good ${stringhour}, ${firstName}`}</h3>
             </div>
             <div id='logout-button-container'>

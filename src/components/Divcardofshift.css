@@ -2,9 +2,8 @@
 .cardofshift-container{
     display: flex;
     justify-content: space-around;
-    width: 60vw;
-    height: 3vw;
-    align-self: center;
+    width: 75vw;
+    height: 10vw;
     align-items: center;
     background-color: rgb(89, 108, 251);
     align-items: center;
@@ -19,17 +18,37 @@
 .cardofshift-container:hover{
     box-shadow: 0px 1px 4px 2px #2440db;
 }
-.cardofshift-info-container{
-    width: 30vw;
+.cardofshift-infobuttons-container{
     display: flex;
-    justify-content: space-around
+    justify-content: space-around;
+    flex-direction: column;
+    width: 80vw;
+    height: 10vw;
+    align-items: center;
+    background-color: rgb(89, 108, 251);
+    align-items: center;
+    border-radius: 5px;
+    color: white;
+    padding: 3vw;
+    font-size: 1.5vw;
+    margin: 2vw;
+    transition: 0.6s;
+    padding-top: 3.5vw;
+
+}
+.cardofshift-info-container{
+    width: 60vw;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 2vw;
 }
 .cardofshift-buttons-container{
-    width: 20vw;
+    width: 30vw;
     display: flex;
+    justify-content: space-around;
 }
 .object-parts{
-    font-size: 1.5vw;
+    font-size: 2vw;
 }
 .input-hour-shift{
     border-radius: 15px;
@@ -78,12 +97,45 @@
         height: 7vw;
         padding: 0.1vw;
         margin: 1vw;
+        display: flex;
+        flex-direction: column;
+        height: 20vw;
+    }
+    .cardofshift-info-container{
+        width: 70vw;
+        font-size: 2vw;
+    }
+    .cardofshift-buttons-container {
+        width: 50vw;
+        display: flex;
+        justify-content: space-around;
     }
     .object-parts{
-        font-size: 10px;
+        font-size: 3vw;
     }
     .button-in{
-        font-size: 1.6vw;
-        padding: 0.1vw;
+        font-size: 2.5vw;
+        padding: 0.9vw;
+    }
+    .input-hour-shift{
+        font-size: 2vw;
+    }
+    .cardofshift-times-container{
+        width: 50vw;
+        display: flex;
+        justify-content: space-around;
+    }
+    .submit-shift-button{
+        font-size: 2.5vw;
+        padding: 1vw;
+    }
+    .input-hour-shift-end{
+        font-size: 2vw;
+    }
+    .cardofshift-infobuttons-container{
+        width: 75vw;
+    }
+    #sort-select{
+        width: 40vw;
     }
 }

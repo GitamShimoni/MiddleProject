@@ -1,10 +1,13 @@
 .WorkerInbox-div{
     /* width: 60vw;
     height: 60vw; */
-    display: flex;
     align-items: center;
     flex-direction: column;
     margin: 5vw;
+    display: flex;
+}
+#workerinbox-header-h1{
+    text-align: center;
 }
 .Message-div{
     display: flex;

@@ -3,6 +3,8 @@
     width: 100%;
     display: flex; 
     justify-content: center;  
+    flex-direction: column;
+    align-items: center;
 }
 #login-inner{
    /* display:flex;
@@ -37,7 +39,7 @@
     letter-spacing: 0.1vw;
     display: block;
     font-weight: bold;
-    font-size: 2vw;
+    font-size: 3vw;
 }
 #login-btn{
     width: 13vw;
@@ -65,24 +67,15 @@
     outline: none;
     border: none;
     color: #000;
-    font-size: 1em;
+    font-size: 1.8vw;
     background: transparent;
-    border-left: 2px solid #000;
-    border-bottom: 2px solid #000;
+    border: 2px solid black;
     transition: 0.1s;
     border-bottom-left-radius: 8px;
+    border-top-right-radius: 8px;
+    font-weight: bold;
 }
-@media screen and (max-width:450px) {
-   #login-btn{
-    width: 75px;
-   }
-   .login-input{
-    width: 150px;
-   }
-   #login-inner{
-    width: 75%;
-   }
-}
+
 .login-div{
     display: flex;
     align-items: center;
@@ -97,49 +90,64 @@
     justify-content: center;
 }
 .user{
-    margin-top: 5px;
-  position: absolute;
-  transform: translateX(3vw) translateY(-0.4vw);
-  margin-left: 10px;
-  padding: 10px;
+    position: absolute;
+    top: -1.5vw;
   pointer-events: none;
-  font-size: 1vw;
-  color: #000;
+  font-size: 1.2vw;
+  color: white;
   text-transform: uppercase;
   transition: 0.5s;
   letter-spacing: 3px;
+  border-radius: 2px;
+  border: 2px solid black;
+}
+  .username-login-container{
+    margin-bottom: 4vw;
+  }
+.login {
+  color: #000;
+  text-transform: uppercase;
+  letter-spacing: 0.3vw;
+  display: block;
+  font-weight: bold;
+  font-size: 2vw;
+}
+
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 26vw;
+  width: 26vw;
+  flex-direction: column;
+  gap: 3vw;
+  background: #e3e3e3;
+  box-shadow: 16px 16px 32px #c8c8c8,
+        -16px -16px 32px #fefefe;
   border-radius: 8px;
 }
-.login-div input:focus~span{
-    transform: translateX(9vw) translateY(-1.5vw);
-    font-size: 0.5vw;
-    padding: 5px 10px;
-    background: #000;
-    letter-spacing: 0.2em;
-    color: #fff;
-    border: 2px;
-  }
-.login-div input::placeholder~span{
-    transform: translateX(9vw) translateY(-1.5vw);
-    font-size: 0.5vw;
-    padding: 5px 10px;
-    background: #000;
-    letter-spacing: 0.2em;
-    color: #fff;
-    border: 2px;
+
+.inputBox {
+  position: relative;
+  width: 15vw;
 }
+
+
+
 #credit-card-container{
-    position: absolute;
-    top: 45vw;
-    left: 24vw;
     padding-bottom: 5vw;
+    z-index: 1;
 }
 #buymembership-button{
     border-radius: 15px;
     border: 0;
-    background-color: antiquewhite;
+    background-color: rgb(191, 223, 250);
     padding: 1vw;
     cursor: pointer;
+    transition: 1s;
+}
+#buymembership-button:hover{
+    background-color: rgb(249, 202, 140);
 }
 .submit-card-input{
     border: 1px solid black;
@@ -162,3 +170,28 @@
     align-items: center;
     flex-direction: row;
 }
+@media screen and (max-width:620px) {
+    #login-btn{
+     width: 20vw;
+     font-size: 4.5vw;
+    }
+    .login-input{
+     width: 40vw;
+    }
+    #login-inner{
+     width: 75%;
+    }
+    #login-tittle{
+     font-size: 5vw;
+    }
+    .user{
+     font-size: 3vw;
+     top: -3.7vw;
+    }
+    .login-div{
+        margin-bottom: 8vw;
+    }
+    #buymembership-button{
+        padding: 3vw;
+    }
+ }
