@@ -6,45 +6,44 @@ import { useNavigate } from 'react-router-dom';
 import PaymentForm from "./PaymentForm";
 import 'animate.css';
 function Loginpage() {
+    // localStorage.setItem("login", "DemiName")
     const navigate = useNavigate();
     const [clicked, setClicked] = useState(false);
     let arrayofworkers = data.workers;
     const {register, handleSubmit}=useForm();
     return(
-    <div id="login-container">
+      <div id="login-container">
         <div id="login-inner">
           <h1 id='login-tittle'>Log in</h1>
           <form onSubmit={handleSubmit((data)=>{checkUser(data)})}>
-          <div> 
-            
+          <div className='username-login-container'> 
             <div className="login-div">
-
-              <input className='login-input' type='text' {...register("username")}></input>
               <span className="user">Username</span>
-
+              <input className='login-input' type='text' {...register("username")}></input>
             </div>
           </div>
-          <div>
-            
+          <div className='username-login-container'>
             <div className="login-div">
-
-              <input className="login-input" type='password' {...register("password")}></input>
               <span className="user">Password</span>
-
+              <input className="login-input" type='password' {...register("password")}></input>
             </div>
           </div>
           <div id="divofsubmit-btn"><button id="login-btn" type="submit">Sign In</button></div>
           </form>
           <div>
             <button onClick={() => setClicked(!clicked)} id='buymembership-button'>Buy Membership</button>
-            {clicked &&
+          </div>
+        </div>
+        {clicked &&
             <div id='credit-card-container' className='animate__animated animate__backInDown'>
               <PaymentForm/>
             </div> }
-          </div>
-        </div>
     </div>
     )
+
+
+
+    
   function checkUser(objofinput){
     let admincheck = null
     let check=false;

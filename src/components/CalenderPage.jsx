@@ -135,11 +135,11 @@ const CalenderPage = () => {
           id="sort-select"
           onChange={(e) => sortfunctionofshowingshifts(e.target.value)}
           >
-          <option value="0">First Sended</option>
-          <option value="1">Last Sended</option>
-          <option value="2">Worker Name</option>
-          <option value="3">Dates: Earliest</option>
-          <option value="4">Dates: Latest</option>
+          <option className={"option-of-sort"} value="0">First Sended</option>
+          <option className={"option-of-sort"} value="1">Last Sended</option>
+          <option className={"option-of-sort"} value="2">Worker Name</option>
+          <option className={"option-of-sort"} value="3">Dates: Earliest</option>
+          <option className={"option-of-sort"} value="4">Dates: Latest</option>
         </select>
         <input type="text" id="searchworker2" placeholder="Search By Worker Name" onChange={(e)=>searchWorkerFunction(e.target.value)}></input>
           </div>

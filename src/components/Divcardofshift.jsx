@@ -31,6 +31,7 @@ function Divcardofshift({element, key, shiftsincalander, setshiftsincalander}) {
     //   console.log(formattedDateString);  // Output: 30.1.2023
     return(
         <div className="cardofshift-container">
+          <div className='cardofshift-infobuttons-container'>
           <div className='cardofshift-info-container'>
             <div className='object-parts'>{obj.title}</div>
             {objectStatus=="accept" ? <div className='object-parts'>{`${capitalizeFirstLetter(objectStatus)}ed`}</div> :
@@ -42,13 +43,15 @@ function Divcardofshift({element, key, shiftsincalander, setshiftsincalander}) {
           <div className='cardofshift-buttons-container'>
             <div className='object-parts' ><button className='button-in'  onClick={() => setAcceptedIsClicked(!acceptedisclicked)}>Accept Shift</button></div> 
             <div className='object-parts' ><button className='button-in'  onClick={()=>takeOutDataInCalender(obj.id)}>Decline Shift</button></div> 
-          </div>
             {acceptedisclicked && <div className='cardofshift-times-container'>
             <div className='object-parts' ><input className='input-hour-shift' type="time" onChange={(e)=> setRealstarthour(e.target.value)} /></div>
             <div className='object-parts' ><input className='input-hour-shift-end' type="time" onChange={(e)=> setRealendthour(e.target.value)} /></div>
             <button className='submit-shift-button' onClick={()=>setDataInCalender(obj)}>Submit</button>
             </div>
           }
+          </div>
+          </div>
+            
         </div>
     )
     
