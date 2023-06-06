@@ -17,7 +17,7 @@
 .workercard-container:hover{
     box-shadow: rgb(247, 227, 78) 0px 7px 29px 4px;
 }
-#workercard-div{
+.workercard-div{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -60,5 +60,8 @@ hr{
     }
     .workercard-phone{
         margin-left: 3vw;
+    }
+    .workercard-container{
+        padding: 4vw;
     }
  }

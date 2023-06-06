@@ -29,6 +29,7 @@ const PaymentForm = () => {
     console.log('Expiry:', state.expiry);
     console.log('CVC:', state.cvc);
     console.log('Name:', state.name);
+    alert("Submitted")
   };
 
   return (
@@ -73,7 +74,7 @@ const PaymentForm = () => {
           onChange={handleInputChange}
           onFocus={handleInputFocus}
         />
-        <div>
+        <div className='submit-button-login-div'>
           <button className='submit-card-button' type="submit">Submit</button>
         </div>
       </form>

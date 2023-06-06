@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import './Message.css'
+import 'animate.css';
 function Message (keyofuser){
     const [messages, setMessages] = useState(JSON.parse(localStorage.getItem("Messages")) || []);
     const [newmessage, Setnewmessage]=useState("");
@@ -22,7 +23,7 @@ function Message (keyofuser){
     }, [messages])
 
     return(
-        <div id="worker-write-message-box">
+        <div className="animate__animated animate__fadeInRight" id="worker-write-message-box">
            <h1 id="worker-write-header">Message box</h1>
            <textarea id="textplace" onChange={(e)=>Setnewmessage(e.target.value)} placeholder="Type Your Message To The Boss..."></textarea>
            <button id="worker-write-button" onClick={()=> sendMessage(newmessage)}>send the message</button>

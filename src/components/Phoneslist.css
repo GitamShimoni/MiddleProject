@@ -20,3 +20,8 @@
     flex-direction: column;
     padding: 40px;
 }
+@media screen and (max-width:620px) {
+  #Phoneslist-inner{
+      width: 80vw;
+  }
+}

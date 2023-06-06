@@ -78,8 +78,8 @@ const WorkerInbox = ({ mykey }) => {
   }
   return (
     <div className="WorkerInbox-div">
-        {sortedMessages.length>0 ? <h1 className="animate__animated animate__rollIn">{sortedMessages.length > 1 ? `Inbox: ${sortedMessages.length} Messages` : `Inbox: ${sortedMessages.length} Message`}</h1> :
-         <h1 id="workerinbox-header-h1" className="animate__animated animate__rollIn">You Have No Messages</h1>}
+        {sortedMessages.length>0 ? <h1 className="animate__animated animate__rollIn ManagerInboxHeader">{sortedMessages.length > 1 ? `Inbox: ${sortedMessages.length} Messages` : `Inbox: ${sortedMessages.length} Message`}</h1> :
+         <h1 id="workerinbox-header-h1" className="animate__animated animate__rollIn ManagerInboxHeader">You Have No Messages</h1>}
         
       {sortedMessages.map((element, index) => {
         return (
