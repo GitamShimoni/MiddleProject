@@ -61,25 +61,28 @@ const CalenderPage = () => {
   
   useEffect (()=>{
 
+    console.log(searchworkerincalander, "search")
+
     let arraybycheckbox = JSON.parse(localStorage.getItem("allshifts"))||[];
+    let updateforarrayofcheckbox = arraybycheckbox.filter((obj) => obj.status === "accept");
 
     if (morningcheck!=true) {
-      arraybycheckbox = arraybycheckbox.filter((element) => element.hour !== "morning");
+      updateforarrayofcheckbox = updateforarrayofcheckbox.filter((element) => element.hour !== "morning");
     }
     if (lunchcheck!=true) {
-      arraybycheckbox = arraybycheckbox.filter((element) => element.hour !== "lunch");
+      updateforarrayofcheckbox = updateforarrayofcheckbox.filter((element) => element.hour !== "lunch");
     }
     if (eveningcheck!=true) {
-      arraybycheckbox = arraybycheckbox.filter((element) => element.hour !== "evening");
+      updateforarrayofcheckbox = updateforarrayofcheckbox.filter((element) => element.hour !== "evening");
     }
-    let updateforarrayofcheckbox = arraybycheckbox.filter((obj) => obj.status == "accept");
     
-    if(searchworkerincalander==null){
+    
+    if(searchworkerincalander==null || searchworkerincalander==undefined){
       setData(updateforarrayofcheckbox);
     }
     else{
       let savename = searchworkerincalander.toLowerCase();
-      setData(arraybycheckbox.filter((element) => element.title.toLowerCase().includes(savename )));
+      setData(updateforarrayofcheckbox.filter((element) => element.title.toLowerCase().includes(savename )));
     }
 
 
