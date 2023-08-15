@@ -1,0 +1,27 @@
+#login-hint-bubble-container {
+  width: 15vw;
+  height: 15vw;
+  background-color: brown;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 8px;
+  position: absolute;
+  left: 10vw;
+}
+#login-hint-user-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.6vw;
+}
+#login-hint-admin-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.6vw;
+}
